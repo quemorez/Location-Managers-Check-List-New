@@ -7,14 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5977FD7557B73CDA949826C1 /* Pods_Location_Managers_Check_List_New.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57A6E1938E6587899EC3DA3 /* Pods_Location_Managers_Check_List_New.framework */; };
 		8C01084A1F283E5100E3D97F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0108491F283E5100E3D97F /* AppDelegate.swift */; };
 		8C01084C1F283E5100E3D97F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C01084B1F283E5100E3D97F /* ViewController.swift */; };
 		8C01084F1F283E5100E3D97F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C01084D1F283E5100E3D97F /* Main.storyboard */; };
 		8C0108511F283E5100E3D97F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C0108501F283E5100E3D97F /* Assets.xcassets */; };
 		8C0108541F283E5100E3D97F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C0108521F283E5100E3D97F /* LaunchScreen.storyboard */; };
+		8C504DA21F28EA20004ECC2B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C504DA11F28EA20004ECC2B /* QuartzCore.framework */; };
+		8C504DA41F28EBE5004ECC2B /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DA31F28EBE5004ECC2B /* ProjectViewController.swift */; };
+		8C504DA51F28F49A004ECC2B /* HoltwoodOneSC2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C504DA01F28E9DA004ECC2B /* HoltwoodOneSC2.ttf */; };
+		8C504DA61F28F49A004ECC2B /* OFL2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C504D9F1F28E9DA004ECC2B /* OFL2.txt */; };
+		8C504DA81F28F7A5004ECC2B /* AddProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DA71F28F7A5004ECC2B /* AddProjectViewController.swift */; };
+		8C504DAA1F28F904004ECC2B /* AddTeamMembersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DA91F28F904004ECC2B /* AddTeamMembersTableViewController.swift */; };
+		8C504DAC1F2907C5004ECC2B /* ProjectLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DAB1F2907C5004ECC2B /* ProjectLocationsViewController.swift */; };
+		8C504DAE1F290889004ECC2B /* CheckListHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DAD1F290889004ECC2B /* CheckListHelper.swift */; };
+		8C504DB01F295104004ECC2B /* CheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DAF1F295104004ECC2B /* CheckListViewController.swift */; };
+		8C504DB61F295244004ECC2B /* CheckListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DB51F295244004ECC2B /* CheckListTableViewCell.swift */; };
+		8C504DB81F298443004ECC2B /* AddCheckListItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DB71F298443004ECC2B /* AddCheckListItemViewController.swift */; };
+		8C504DBA1F2A2DA6004ECC2B /* LocationInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DB91F2A2DA6004ECC2B /* LocationInformationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		134AE6EC090C368F4CADDB62 /* Pods-Location Managers Check List New.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Location Managers Check List New.release.xcconfig"; path = "Pods/Target Support Files/Pods-Location Managers Check List New/Pods-Location Managers Check List New.release.xcconfig"; sourceTree = "<group>"; };
+		2FCD61DEA11C1AA243750CFF /* Pods-Location Managers Check List New.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Location Managers Check List New.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Location Managers Check List New/Pods-Location Managers Check List New.debug.xcconfig"; sourceTree = "<group>"; };
 		8C0108461F283E5100E3D97F /* Location Managers Check List New.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Location Managers Check List New.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C0108491F283E5100E3D97F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C01084B1F283E5100E3D97F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +37,19 @@
 		8C0108501F283E5100E3D97F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C0108531F283E5100E3D97F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C0108551F283E5100E3D97F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C504D9F1F28E9DA004ECC2B /* OFL2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = OFL2.txt; path = "LMCL assets/Holtwood_One_SC 2/OFL2.txt"; sourceTree = SOURCE_ROOT; };
+		8C504DA01F28E9DA004ECC2B /* HoltwoodOneSC2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = HoltwoodOneSC2.ttf; path = "LMCL assets/Holtwood_One_SC 2/HoltwoodOneSC2.ttf"; sourceTree = SOURCE_ROOT; };
+		8C504DA11F28EA20004ECC2B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8C504DA31F28EBE5004ECC2B /* ProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
+		8C504DA71F28F7A5004ECC2B /* AddProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectViewController.swift; sourceTree = "<group>"; };
+		8C504DA91F28F904004ECC2B /* AddTeamMembersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTeamMembersTableViewController.swift; sourceTree = "<group>"; };
+		8C504DAB1F2907C5004ECC2B /* ProjectLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectLocationsViewController.swift; sourceTree = "<group>"; };
+		8C504DAD1F290889004ECC2B /* CheckListHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListHelper.swift; sourceTree = "<group>"; };
+		8C504DAF1F295104004ECC2B /* CheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListViewController.swift; sourceTree = "<group>"; };
+		8C504DB51F295244004ECC2B /* CheckListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListTableViewCell.swift; sourceTree = "<group>"; };
+		8C504DB71F298443004ECC2B /* AddCheckListItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCheckListItemViewController.swift; sourceTree = "<group>"; };
+		8C504DB91F2A2DA6004ECC2B /* LocationInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInformationViewController.swift; sourceTree = "<group>"; };
+		A57A6E1938E6587899EC3DA3 /* Pods_Location_Managers_Check_List_New.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Location_Managers_Check_List_New.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +57,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C504DA21F28EA20004ECC2B /* QuartzCore.framework in Frameworks */,
+				5977FD7557B73CDA949826C1 /* Pods_Location_Managers_Check_List_New.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E097C364206EBB3DE9D4682 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2FCD61DEA11C1AA243750CFF /* Pods-Location Managers Check List New.debug.xcconfig */,
+				134AE6EC090C368F4CADDB62 /* Pods-Location Managers Check List New.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8C01083D1F283E5100E3D97F = {
 			isa = PBXGroup;
 			children = (
 				8C0108481F283E5100E3D97F /* Location Managers Check List New */,
 				8C0108471F283E5100E3D97F /* Products */,
+				1E097C364206EBB3DE9D4682 /* Pods */,
+				94BCBF60EF972E88FF74E705 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +95,34 @@
 		8C0108481F283E5100E3D97F /* Location Managers Check List New */ = {
 			isa = PBXGroup;
 			children = (
+				8C504DAD1F290889004ECC2B /* CheckListHelper.swift */,
+				8C504DB51F295244004ECC2B /* CheckListTableViewCell.swift */,
 				8C0108491F283E5100E3D97F /* AppDelegate.swift */,
 				8C01084B1F283E5100E3D97F /* ViewController.swift */,
+				8C504DA31F28EBE5004ECC2B /* ProjectViewController.swift */,
+				8C504DA71F28F7A5004ECC2B /* AddProjectViewController.swift */,
+				8C504DA91F28F904004ECC2B /* AddTeamMembersTableViewController.swift */,
+				8C504DAB1F2907C5004ECC2B /* ProjectLocationsViewController.swift */,
+				8C504DAF1F295104004ECC2B /* CheckListViewController.swift */,
+				8C504DB71F298443004ECC2B /* AddCheckListItemViewController.swift */,
+				8C504DB91F2A2DA6004ECC2B /* LocationInformationViewController.swift */,
 				8C01084D1F283E5100E3D97F /* Main.storyboard */,
 				8C0108501F283E5100E3D97F /* Assets.xcassets */,
 				8C0108521F283E5100E3D97F /* LaunchScreen.storyboard */,
+				8C504DA01F28E9DA004ECC2B /* HoltwoodOneSC2.ttf */,
+				8C504D9F1F28E9DA004ECC2B /* OFL2.txt */,
 				8C0108551F283E5100E3D97F /* Info.plist */,
 			);
 			path = "Location Managers Check List New";
+			sourceTree = "<group>";
+		};
+		94BCBF60EF972E88FF74E705 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8C504DA11F28EA20004ECC2B /* QuartzCore.framework */,
+				A57A6E1938E6587899EC3DA3 /* Pods_Location_Managers_Check_List_New.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +132,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C0108581F283E5100E3D97F /* Build configuration list for PBXNativeTarget "Location Managers Check List New" */;
 			buildPhases = (
+				A4CE1766FED9B4AF82EBD7F2 /* [CP] Check Pods Manifest.lock */,
 				8C0108421F283E5100E3D97F /* Sources */,
 				8C0108431F283E5100E3D97F /* Frameworks */,
 				8C0108441F283E5100E3D97F /* Resources */,
+				9F98F8F3A132CD9F13AF2777 /* [CP] Embed Pods Frameworks */,
+				43560192144ADD3424BA462F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -122,6 +186,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C504DA51F28F49A004ECC2B /* HoltwoodOneSC2.ttf in Resources */,
+				8C504DA61F28F49A004ECC2B /* OFL2.txt in Resources */,
 				8C0108541F283E5100E3D97F /* LaunchScreen.storyboard in Resources */,
 				8C0108511F283E5100E3D97F /* Assets.xcassets in Resources */,
 				8C01084F1F283E5100E3D97F /* Main.storyboard in Resources */,
@@ -130,13 +196,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		43560192144ADD3424BA462F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Location Managers Check List New/Pods-Location Managers Check List New-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F98F8F3A132CD9F13AF2777 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Location Managers Check List New/Pods-Location Managers Check List New-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4CE1766FED9B4AF82EBD7F2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8C0108421F283E5100E3D97F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C504DB81F298443004ECC2B /* AddCheckListItemViewController.swift in Sources */,
+				8C504DBA1F2A2DA6004ECC2B /* LocationInformationViewController.swift in Sources */,
+				8C504DA81F28F7A5004ECC2B /* AddProjectViewController.swift in Sources */,
+				8C504DB01F295104004ECC2B /* CheckListViewController.swift in Sources */,
+				8C504DAC1F2907C5004ECC2B /* ProjectLocationsViewController.swift in Sources */,
+				8C504DB61F295244004ECC2B /* CheckListTableViewCell.swift in Sources */,
 				8C01084C1F283E5100E3D97F /* ViewController.swift in Sources */,
 				8C01084A1F283E5100E3D97F /* AppDelegate.swift in Sources */,
+				8C504DAE1F290889004ECC2B /* CheckListHelper.swift in Sources */,
+				8C504DA41F28EBE5004ECC2B /* ProjectViewController.swift in Sources */,
+				8C504DAA1F28F904004ECC2B /* AddTeamMembersTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +394,7 @@
 		};
 		8C0108591F283E5100E3D97F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FCD61DEA11C1AA243750CFF /* Pods-Location Managers Check List New.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = V63MCVZ6NB;
@@ -285,6 +409,7 @@
 		};
 		8C01085A1F283E5100E3D97F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 134AE6EC090C368F4CADDB62 /* Pods-Location Managers Check List New.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = V63MCVZ6NB;

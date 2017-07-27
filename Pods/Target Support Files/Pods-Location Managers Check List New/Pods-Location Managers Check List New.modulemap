@@ -1,0 +1,6 @@
+framework module Pods_Location_Managers_Check_List_New {
+  umbrella header "Pods-Location Managers Check List New-umbrella.h"
+
+  export *
+  module * { export * }
+}

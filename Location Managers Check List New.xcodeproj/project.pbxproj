@@ -25,6 +25,9 @@
 		8C504DB61F295244004ECC2B /* CheckListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DB51F295244004ECC2B /* CheckListTableViewCell.swift */; };
 		8C504DB81F298443004ECC2B /* AddCheckListItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DB71F298443004ECC2B /* AddCheckListItemViewController.swift */; };
 		8C504DBA1F2A2DA6004ECC2B /* LocationInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DB91F2A2DA6004ECC2B /* LocationInformationViewController.swift */; };
+		8C504DBC1F2AEBBF004ECC2B /* VendorOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DBB1F2AEBBF004ECC2B /* VendorOrdersViewController.swift */; };
+		8C504DBE1F2D985C004ECC2B /* chatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DBD1F2D985C004ECC2B /* chatViewController.swift */; };
+		8C504DC01F2D9D40004ECC2B /* chatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DBF1F2D9D40004ECC2B /* chatTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +52,9 @@
 		8C504DB51F295244004ECC2B /* CheckListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListTableViewCell.swift; sourceTree = "<group>"; };
 		8C504DB71F298443004ECC2B /* AddCheckListItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCheckListItemViewController.swift; sourceTree = "<group>"; };
 		8C504DB91F2A2DA6004ECC2B /* LocationInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInformationViewController.swift; sourceTree = "<group>"; };
+		8C504DBB1F2AEBBF004ECC2B /* VendorOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorOrdersViewController.swift; sourceTree = "<group>"; };
+		8C504DBD1F2D985C004ECC2B /* chatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatViewController.swift; sourceTree = "<group>"; };
+		8C504DBF1F2D9D40004ECC2B /* chatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatTableViewCell.swift; sourceTree = "<group>"; };
 		A57A6E1938E6587899EC3DA3 /* Pods_Location_Managers_Check_List_New.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Location_Managers_Check_List_New.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -104,9 +110,12 @@
 				8C504DA91F28F904004ECC2B /* AddTeamMembersTableViewController.swift */,
 				8C504DAB1F2907C5004ECC2B /* ProjectLocationsViewController.swift */,
 				8C504DAF1F295104004ECC2B /* CheckListViewController.swift */,
+				8C504DBB1F2AEBBF004ECC2B /* VendorOrdersViewController.swift */,
 				8C504DB71F298443004ECC2B /* AddCheckListItemViewController.swift */,
 				8C504DB91F2A2DA6004ECC2B /* LocationInformationViewController.swift */,
 				8C01084D1F283E5100E3D97F /* Main.storyboard */,
+				8C504DBD1F2D985C004ECC2B /* chatViewController.swift */,
+				8C504DBF1F2D9D40004ECC2B /* chatTableViewCell.swift */,
 				8C0108501F283E5100E3D97F /* Assets.xcassets */,
 				8C0108521F283E5100E3D97F /* LaunchScreen.storyboard */,
 				8C504DA01F28E9DA004ECC2B /* HoltwoodOneSC2.ttf */,
@@ -250,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C504DB81F298443004ECC2B /* AddCheckListItemViewController.swift in Sources */,
+				8C504DBE1F2D985C004ECC2B /* chatViewController.swift in Sources */,
 				8C504DBA1F2A2DA6004ECC2B /* LocationInformationViewController.swift in Sources */,
 				8C504DA81F28F7A5004ECC2B /* AddProjectViewController.swift in Sources */,
 				8C504DB01F295104004ECC2B /* CheckListViewController.swift in Sources */,
@@ -257,8 +267,10 @@
 				8C504DB61F295244004ECC2B /* CheckListTableViewCell.swift in Sources */,
 				8C01084C1F283E5100E3D97F /* ViewController.swift in Sources */,
 				8C01084A1F283E5100E3D97F /* AppDelegate.swift in Sources */,
+				8C504DC01F2D9D40004ECC2B /* chatTableViewCell.swift in Sources */,
 				8C504DAE1F290889004ECC2B /* CheckListHelper.swift in Sources */,
 				8C504DA41F28EBE5004ECC2B /* ProjectViewController.swift in Sources */,
+				8C504DBC1F2AEBBF004ECC2B /* VendorOrdersViewController.swift in Sources */,
 				8C504DAA1F28F904004ECC2B /* AddTeamMembersTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -42,7 +42,12 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
         performSegue(withIdentifier: "toLocationInformationSegue", sender: self)
     }
     
+    @IBAction func vendorOrderBtn(_ sender: Any) {
+        performSegue(withIdentifier: "VendorOrderSegue", sender: self)
+    }
     
+    @IBAction func chatBtn(_ sender: Any) {
+    }
     
     override func viewDidLoad() {
         
@@ -365,7 +370,7 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // print(indexPath.row)
-        let cell:UITableViewCell = tableView.cellForRow(at: indexPath)!
+        let _:UITableViewCell = tableView.cellForRow(at: indexPath)!
         if indexPath.section == 0 {
             // print("its from location section")
             
@@ -437,11 +442,11 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
             CheckListView.CurrentLocationID = self.CurrentLocationID
  
         }else if segue.identifier == "VendorOrderSegue"{
-            /*
+            
             let CheckListView = segue.destination as! VendorOrdersViewController
-            CheckListView.currentLocation = self.CurrentLocation
+            CheckListView.CurrentLocation = self.CurrentLocation
             CheckListView.CurrentLocationID = self.CurrentLocationID
-            */
+            
         }
         
     }

@@ -17,6 +17,8 @@ class chatTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        messageLabel.layer.cornerRadius = 20
+        messageLabel.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

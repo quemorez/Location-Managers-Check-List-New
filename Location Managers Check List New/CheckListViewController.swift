@@ -47,6 +47,8 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func chatBtn(_ sender: Any) {
+        performSegue(withIdentifier: "toChatSegue", sender: self)
+        
     }
     
     override func viewDidLoad() {

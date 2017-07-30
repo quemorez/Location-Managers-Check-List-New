@@ -24,7 +24,15 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
     @IBOutlet var messageTextField: UITextField!
     @IBOutlet var chatTableView: UITableView!
     @IBAction func sendMessageBtn(_ sender: Any) {
-        sendMessage()
+        if messageTextField.text == "" {
+            self.displayAlert("message is blank", error: "Please write something first")
+            messageTextField.text = ""
+        }else {
+            sendMessage()
+            messageTextField.text = ""
+            LoadMessages()
+        }
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +40,7 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
         self.chatTableView.delegate = self
         
         
+        LoadMessages()
         
         
        
@@ -44,22 +53,12 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var pfobject = PFObject()
-        var username = ""
-        var message = ""
-        
-        pfobject = self.ParsedChats[indexPath.row]
-        username = pfobject["sender"] as! String
-        message = pfobject["message"] as! String
-        
-        
-        
-        
+       
         let chatCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! chatTableViewCell
         
         
-        chatCell.userNameLabel.text = username
-        chatCell.messageLabel.text = message
+        chatCell.userNameLabel.text = self.ChatSender[indexPath.row]
+        chatCell.messageLabel.text = self.ChatMessage[indexPath.row]
         // check the value of item
         return chatCell
     }
@@ -74,31 +73,18 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
         activityIndicator.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
         
-        let query = PFQuery(className: "Chat")
-        
-        query.getObjectInBackground(withId:CurrentLocationID){
-            (Chat, error) in
-            if error != nil{
-                
-                print("There is a error while searching please check internet connection")
-                
-                self.displayAlert("The Chat function is not working", error: "Please check internet conection")
-                print(error)
-                
-            }else if let Chat = Chat {
-                Chat["sender"] = PFUser.current()!.username
-                Chat["Message"] = self.messageTextField.text
-                Chat["LocationID"] = self.CurrentLocationID
-                
-                
-                Chat.saveInBackground(block: { (success, error) in
+        let Chat = PFObject(className: "Chat")
+            Chat["sender"] = PFUser.current()!.username
+            Chat["Message"] = self.messageTextField.text
+            Chat["LocationID"] = self.CurrentLocationID
+            Chat.saveInBackground(block: { (success, error) in
                     if success == true {
                         
                         //stops Activity Indicator
                         self.activityIndicator.stopAnimating()
                         UIApplication.shared.endIgnoringInteractionEvents()
-                        
-                        self.chatTableView.reloadData()
+                        self.LoadMessages()
+                        //self.chatTableView.reloadData()
                         
                         
                     } else {
@@ -111,15 +97,17 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
                     }
                     
                 })
-            }
+        
             
-        }
+    
         //after this quote the bracket is the end of funtion
     }
     
     
     func LoadMessages() {
         // Mark: -  Query
+        ChatMessage.removeAll()
+        ChatSender.removeAll()
         
         let query = PFQuery(className: "Chat")
         query.whereKey("LocationID", equalTo: CurrentLocationID)
@@ -130,30 +118,31 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
                 
                 print("There is a error while searching please check internet connection")
                 
-                self.displayAlert("Check list not found", error: "Please check internet conection")
+                self.displayAlert("Location not found", error: "Please check internet conection")
                 print(error)
                 
             }else if let objects = objects {
+                print(objects)
                 
+                //stops Activity Indicator
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
                 
+                self.ParsedChats.removeAll(keepingCapacity: true)
                 for object in objects {
-                    
-                    var sender = object ["sender"] as! String
-                    var message = object ["Message"] as! String
-                    
                     self.ParsedChats.append(object)
                     
-                    
-                
-                    }
-                
-                    
+                    let sender: String = object["sender"] as! String
+                    let message: String = object["Message"] as! String
+                    self.ChatSender.append(sender)
+                    self.ChatMessage.append(message)
+                    //print(self.ProjectsTitles)
                     self.chatTableView.reloadData()
-                    //stops Activity Indicator
-                    self.activityIndicator.stopAnimating()
-                    UIApplication.shared.endIgnoringInteractionEvents()
+                    
+                    
                 }
             }
+        }
         }
     
 

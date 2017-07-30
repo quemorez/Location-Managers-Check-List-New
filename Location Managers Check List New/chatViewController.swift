@@ -16,12 +16,15 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
     var CurrentLocation = ""
     var CurrentProject = ""
     var CurrentLocationID = ""
-    var ParsedChats = [String: String]()
+    var ParsedChats = [PFObject]()
+    var ChatSender = [String]()
+    var ChatMessage = [String]()
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
     @IBOutlet var messageTextField: UITextField!
     @IBOutlet var chatTableView: UITableView!
     @IBAction func sendMessageBtn(_ sender: Any) {
+        sendMessage()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +44,15 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let username = ""
-        let message = ""
+        var pfobject = PFObject()
+        var username = ""
+        var message = ""
+        
+        pfobject = self.ParsedChats[indexPath.row]
+        username = pfobject["sender"] as! String
+        message = pfobject["message"] as! String
+        
+        
         
         
         let chatCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! chatTableViewCell
@@ -54,7 +64,7 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
         return chatCell
     }
     
-    func sendMessage(_ message:String) {
+    func sendMessage() {
         //creates an activity maker to tell users that a save is in process
         activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         activityIndicator.center = self.view.center
@@ -65,6 +75,7 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
         UIApplication.shared.beginIgnoringInteractionEvents()
         
         let query = PFQuery(className: "Chat")
+        
         query.getObjectInBackground(withId:CurrentLocationID){
             (Chat, error) in
             if error != nil{
@@ -75,8 +86,10 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
                 print(error)
                 
             }else if let Chat = Chat {
-                Chat["sender"] = PFUser.current()
+                Chat["sender"] = PFUser.current()!.username
                 Chat["Message"] = self.messageTextField.text
+                Chat["LocationID"] = self.CurrentLocationID
+                
                 
                 Chat.saveInBackground(block: { (success, error) in
                     if success == true {
@@ -103,6 +116,46 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
         }
         //after this quote the bracket is the end of funtion
     }
+    
+    
+    func LoadMessages() {
+        // Mark: -  Query
+        
+        let query = PFQuery(className: "Chat")
+        query.whereKey("LocationID", equalTo: CurrentLocationID)
+        query.order(byAscending: "createdAt")
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                
+                print("There is a error while searching please check internet connection")
+                
+                self.displayAlert("Check list not found", error: "Please check internet conection")
+                print(error)
+                
+            }else if let objects = objects {
+                
+                
+                for object in objects {
+                    
+                    var sender = object ["sender"] as! String
+                    var message = object ["Message"] as! String
+                    
+                    self.ParsedChats.append(object)
+                    
+                    
+                
+                    }
+                
+                    
+                    self.chatTableView.reloadData()
+                    //stops Activity Indicator
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                }
+            }
+        }
+    
 
     //Helper Methiods
     //this function creats and alert that you can display errors with

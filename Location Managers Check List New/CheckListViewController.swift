@@ -431,21 +431,27 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addItemSegue"{
             
-            let CheckListView = segue.destination as! AddCheckListItemViewController
-            CheckListView.CurrentLocation = self.CurrentLocation
-            CheckListView.CurrentProject = self.CurrentProject
+            let AddCheckListView = segue.destination as! AddCheckListItemViewController
+            AddCheckListView.CurrentLocation = self.CurrentLocation
+            AddCheckListView.CurrentProject = self.CurrentProject
             
         }else if segue.identifier == "toLocationInformationSegue"{
             
-            let CheckListView = segue.destination as! LocationInformationViewController
-            CheckListView.currentLocation = self.CurrentLocation
-            CheckListView.CurrentLocationID = self.CurrentLocationID
+            let LocationInfoView = segue.destination as! LocationInformationViewController
+            LocationInfoView.currentLocation = self.CurrentLocation
+            LocationInfoView.CurrentLocationID = self.CurrentLocationID
  
         }else if segue.identifier == "VendorOrderSegue"{
             
-            let CheckListView = segue.destination as! VendorOrdersViewController
-            CheckListView.CurrentLocation = self.CurrentLocation
-            CheckListView.CurrentLocationID = self.CurrentLocationID
+            let VendorView = segue.destination as! VendorOrdersViewController
+            VendorView.CurrentLocation = self.CurrentLocation
+            VendorView.CurrentLocationID = self.CurrentLocationID
+            
+        }else if segue.identifier == "toChatSegue"{
+            
+            let ChatView = segue.destination as! chatViewController
+            ChatView.CurrentLocation = self.CurrentLocation
+            ChatView.CurrentLocationID = self.CurrentLocationID
             
         }
         

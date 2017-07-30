@@ -231,7 +231,7 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
         
     }
     
-    /*
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ProjectToLocationSegue"{
             let LocationView = segue.destination as! ProjectLocationsViewController
@@ -239,7 +239,7 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
         }
         
     }
-    */
+    
  
     /*
      // MARK: - Navigation

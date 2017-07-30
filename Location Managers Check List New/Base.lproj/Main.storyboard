@@ -36,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already signed up? " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9r-N1-85b">
-                                        <rect key="frame" x="8" y="515" width="197.5" height="21.5"/>
+                                        <rect key="frame" x="8" y="515" width="142.5" height="15.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Y9r-N1-85b" secondAttribute="height" multiplier="46:5" id="z0c-rL-5Cg"/>
                                         </constraints>
@@ -111,7 +111,7 @@
                                 </variation>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOP-ik-TSI">
-                                <rect key="frame" x="235.5" y="509" width="87.5" height="34"/>
+                                <rect key="frame" x="180.5" y="509" width="72" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xOP-ik-TSI" secondAttribute="height" multiplier="95:37" id="HRJ-gR-bNp"/>
                                 </constraints>
@@ -127,7 +127,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIC-zp-S5P">
-                                <rect key="frame" x="146" y="577.5" width="85" height="40"/>
+                                <rect key="frame" x="146" y="571.5" width="85" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="85" id="46g-jy-rGb"/>

@@ -172,7 +172,7 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
                 print(error)
                 
             }else if let objects = objects {
-                print(objects)
+                //print(objects)
                 
                 //stops Activity Indicator
                 self.activityIndicator.stopAnimating()
@@ -256,7 +256,7 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
                     print(error)
                     
                 }else if let objects = objects {
-                    print(objects)
+                    //print(objects)
                     
                     for object in objects {
                         object["Project"] = ""

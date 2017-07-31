@@ -16,7 +16,7 @@ class VendorOrdersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(CurrentProject)
+       // print(CurrentProject)
         // Do any additional setup after loading the view.
     }
 

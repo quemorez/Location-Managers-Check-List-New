@@ -18,7 +18,7 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
     var CurrentProject = ""
     var CurrentLocationID = ""
     var numberComplete = 0
-    var PercentComplete = 0.0
+    var PercentComplete = 0
     var newItem = [String: String]()
     var CheckedTasks = [String]()
     var canEdit = false
@@ -164,18 +164,24 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
         }
-        /*
-         print("these are how many tasks are complete\( numberComplete)")
-         self.PercentComplete = Double(self.numberComplete/(parsedLocationSectionCLItemsKeys.count + parsedHoldingSectionCLItemsKeys.count + parsedVendorSectionCLItemsKeys.count+parsedOtherSectionCLItemsKeys.count))
-         */
+        
+        
+ 
         //self.checkListTableView.reloadData()
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         
+        let numberOfItems = parsedLocationSectionCLItemsKeys.count + parsedHoldingSectionCLItemsKeys.count + parsedVendorSectionCLItemsKeys.count + parsedOtherSectionCLItemsKeys.count
         
-        
+        print("these are how many tasks  there are \( numberOfItems)")
+        print("these are how many tasks are complete \( numberComplete)")
+       // self.PercentComplete = ((Int (self.numberComplete)) / (Int (numberOfItems)) * 100)
+        //print(PercentComplete)
+        let test = Double(self.numberComplete) / Double(numberOfItems)
+        self.PercentComplete = Int(test * 100)
+        print(PercentComplete)
         
         //creates an activity maker to tell users that a save is in process
         activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))

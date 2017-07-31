@@ -28,6 +28,7 @@
 		8C504DBC1F2AEBBF004ECC2B /* VendorOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DBB1F2AEBBF004ECC2B /* VendorOrdersViewController.swift */; };
 		8C504DBE1F2D985C004ECC2B /* chatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DBD1F2D985C004ECC2B /* chatViewController.swift */; };
 		8C504DC01F2D9D40004ECC2B /* chatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DBF1F2D9D40004ECC2B /* chatTableViewCell.swift */; };
+		8CA95E871F2ECD8E006A2638 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA95E861F2ECD8E006A2638 /* LocationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		8C504DBB1F2AEBBF004ECC2B /* VendorOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorOrdersViewController.swift; sourceTree = "<group>"; };
 		8C504DBD1F2D985C004ECC2B /* chatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatViewController.swift; sourceTree = "<group>"; };
 		8C504DBF1F2D9D40004ECC2B /* chatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatTableViewCell.swift; sourceTree = "<group>"; };
+		8CA95E861F2ECD8E006A2638 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		A57A6E1938E6587899EC3DA3 /* Pods_Location_Managers_Check_List_New.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Location_Managers_Check_List_New.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -108,6 +110,7 @@
 				8C504DA31F28EBE5004ECC2B /* ProjectViewController.swift */,
 				8C504DA71F28F7A5004ECC2B /* AddProjectViewController.swift */,
 				8C504DA91F28F904004ECC2B /* AddTeamMembersTableViewController.swift */,
+				8CA95E861F2ECD8E006A2638 /* LocationTableViewCell.swift */,
 				8C504DAB1F2907C5004ECC2B /* ProjectLocationsViewController.swift */,
 				8C504DAF1F295104004ECC2B /* CheckListViewController.swift */,
 				8C504DBB1F2AEBBF004ECC2B /* VendorOrdersViewController.swift */,
@@ -264,6 +267,7 @@
 				8C504DA81F28F7A5004ECC2B /* AddProjectViewController.swift in Sources */,
 				8C504DB01F295104004ECC2B /* CheckListViewController.swift in Sources */,
 				8C504DAC1F2907C5004ECC2B /* ProjectLocationsViewController.swift in Sources */,
+				8CA95E871F2ECD8E006A2638 /* LocationTableViewCell.swift in Sources */,
 				8C504DB61F295244004ECC2B /* CheckListTableViewCell.swift in Sources */,
 				8C01084C1F283E5100E3D97F /* ViewController.swift in Sources */,
 				8C01084A1F283E5100E3D97F /* AppDelegate.swift in Sources */,

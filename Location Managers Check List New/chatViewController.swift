@@ -19,6 +19,7 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
     var ParsedChats = [PFObject]()
     var ChatSender = [String]()
     var ChatMessage = [String]()
+    var Chatdate = [String]()
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
     @IBOutlet var messageTextField: UITextField!
@@ -59,6 +60,7 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
         
         chatCell.userNameLabel.text = self.ChatSender[indexPath.row]
         chatCell.messageLabel.text = self.ChatMessage[indexPath.row]
+        chatCell.dateTimeLabel.text = self.Chatdate[indexPath.row]
         // check the value of item
         return chatCell
     }
@@ -122,7 +124,7 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
                 print(error)
                 
             }else if let objects = objects {
-                print(objects)
+                //print(objects)
                 
                 //stops Activity Indicator
                 self.activityIndicator.stopAnimating()
@@ -131,14 +133,23 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
                 self.ParsedChats.removeAll(keepingCapacity: true)
                 for object in objects {
                     self.ParsedChats.append(object)
+                    print(object.createdAt! as NSDate)
                     
                     let sender: String = object["sender"] as! String
                     let message: String = object["Message"] as! String
+                    let dateAndTime: NSDate = object.createdAt! as NSDate
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss"
+                    let StringDate = dateFormatter.string(from: dateAndTime as Date)
+                    
+                    
+                    
                     self.ChatSender.append(sender)
                     self.ChatMessage.append(message)
+                    self.Chatdate.append(StringDate)
+                    
                     //print(self.ProjectsTitles)
                     self.chatTableView.reloadData()
-                    
                     
                 }
             }

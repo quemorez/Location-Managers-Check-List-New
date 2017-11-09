@@ -36,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already signed up? " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9r-N1-85b">
-                                        <rect key="frame" x="8" y="515" width="197.5" height="21.5"/>
+                                        <rect key="frame" x="8" y="515" width="142.5" height="15.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Y9r-N1-85b" secondAttribute="height" multiplier="46:5" id="z0c-rL-5Cg"/>
                                         </constraints>
@@ -111,7 +111,7 @@
                                 </variation>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xOP-ik-TSI">
-                                <rect key="frame" x="235.5" y="509" width="87.5" height="34"/>
+                                <rect key="frame" x="180.5" y="509" width="72" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xOP-ik-TSI" secondAttribute="height" multiplier="95:37" id="HRJ-gR-bNp"/>
                                 </constraints>
@@ -127,7 +127,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIC-zp-S5P">
-                                <rect key="frame" x="146" y="577.5" width="85" height="40"/>
+                                <rect key="frame" x="146" y="571.5" width="85" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="85" id="46g-jy-rGb"/>
@@ -473,28 +473,40 @@
                                         <rect key="frame" x="0.0" y="92" width="375" height="555"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="sectionIndexBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <progressView key="tableFooterView" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" id="n1G-nu-Kd5">
-                                            <rect key="frame" x="0.0" y="72" width="375" height="2"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </progressView>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="cell" id="uI3-UO-uwW" customClass="LocationTableViewCell" customModule="Location_Managers_Check_List_New" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="uI3-UO-uwW" customClass="LocationTableViewCell" customModule="Location_Managers_Check_List_New" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uI3-UO-uwW" id="p40-Nx-413">
-                                                    <rect key="frame" x="0.0" y="0.0" width="308" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGs-7o-GVW">
-                                                            <rect key="frame" x="8" y="12" width="115" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" layoutMarginsFollowReadableWidth="YES" text="Location Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGs-7o-GVW">
+                                                            <rect key="frame" x="12" y="12" width="351" height="21"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="etp-hv-bab">
+                                                            <rect key="frame" x="0.0" y="37" width="375" height="6"/>
+                                                        </progressView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="etp-hv-bab" secondAttribute="trailing" id="2Yf-ME-3uc"/>
+                                                        <constraint firstItem="eGs-7o-GVW" firstAttribute="leading" secondItem="p40-Nx-413" secondAttribute="leadingMargin" constant="4" id="JSk-P8-5P4"/>
+                                                        <constraint firstAttribute="bottom" secondItem="etp-hv-bab" secondAttribute="bottom" constant="1" id="Uha-do-2qB"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="eGs-7o-GVW" secondAttribute="trailing" constant="4" id="cwO-fS-HGE"/>
+                                                        <constraint firstItem="eGs-7o-GVW" firstAttribute="top" secondItem="p40-Nx-413" secondAttribute="topMargin" constant="4" id="jbo-uY-9Q8"/>
+                                                        <constraint firstItem="etp-hv-bab" firstAttribute="top" secondItem="eGs-7o-GVW" secondAttribute="bottom" constant="4" id="mcv-mI-mAW"/>
+                                                        <constraint firstItem="etp-hv-bab" firstAttribute="leading" secondItem="p40-Nx-413" secondAttribute="leading" id="oRv-1W-FZy"/>
+                                                        <constraint firstItem="eGs-7o-GVW" firstAttribute="centerY" secondItem="p40-Nx-413" secondAttribute="centerY" id="tt4-tt-xdi"/>
+                                                    </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <outlet property="LocationNameLabel" destination="eGs-7o-GVW" id="7SW-6m-SXe"/>
+                                                    <outlet property="PregressBar" destination="etp-hv-bab" id="iol-mS-bGI"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
@@ -531,7 +543,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7xB-RH-SZe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3049" y="752"/>
+            <point key="canvasLocation" x="3048.8000000000002" y="751.57421289355329"/>
         </scene>
         <!--Chat-->
         <scene sceneID="tPJ-kA-VhF">

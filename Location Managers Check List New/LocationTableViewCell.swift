@@ -10,6 +10,9 @@ import UIKit
 
 class LocationTableViewCell: UITableViewCell {
 
+    @IBOutlet var PregressBar: UIProgressView!
+    @IBOutlet var LocationNameLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -267,7 +267,7 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        self.numberComplete = 0
         var checkListTask = ""
         var taskBoolValue = false
         
@@ -276,20 +276,27 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
             taskBoolValue = parsedLocationSectionCLItems[checkListTask]!
             if parsedLocationSectionCLItems[checkListTask]! == true{
                 self.numberComplete += 1
+                print(numberComplete)
             }
             
         }else if indexPath.section == 1 {
             checkListTask = parsedHoldingSectionCLItemsKeys.sorted()[indexPath.row]
             taskBoolValue = parsedHoldingSectionCLItems[checkListTask]!
-            
+            if parsedHoldingSectionCLItems[checkListTask]! == true{
+                self.numberComplete += 1
+            }
         }else if indexPath.section == 2 {
             checkListTask = parsedVendorSectionCLItemsKeys.sorted()[indexPath.row]
             taskBoolValue = parsedVendorSectionCLItems[checkListTask]!
-            
+            if parsedVendorSectionCLItems[checkListTask]! == true{
+                self.numberComplete += 1
+            }
         }else {
             checkListTask = parsedOtherSectionCLItemsKeys.sorted()[indexPath.row]
             taskBoolValue = parsedOtherSectionCLItems[checkListTask]!
-            
+            if parsedOtherSectionCLItems[checkListTask]! == true{
+                self.numberComplete += 1
+            }
         }
         
         
@@ -311,16 +318,17 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Assign the tap action which will be executed when the user taps the UIButton/ check button
         taskcell.checkAction = { [weak self] (selectedcell) in
-            //print(selectedcell)
+            print(taskcell.CheckButtonOutlet.isSelected)
             
             //If the task in not checked this will check the box and save the new value to check list Item array depending on catagory/section
             if taskcell.CheckButtonOutlet.isSelected == false {
+                
                 // print(tableView.indexPath(for: selectedcell)!.section ,tableView.indexPath(for: selectedcell)!.row)
                 
                 if tableView.indexPath(for: selectedcell)!.section == 0 {
                     let key = self?.parsedLocationSectionCLItemsKeys.sorted()[tableView.indexPath(for: selectedcell)!.row]
                     self?.parsedLocationSectionCLItems[key!] = true
-                    //  print(key)
+                    
                 }else if tableView.indexPath(for: selectedcell)!.section == 1 {
                     let key = self?.parsedHoldingSectionCLItemsKeys.sorted()[tableView.indexPath(for: selectedcell)!.row]
                     self?.parsedHoldingSectionCLItems[key!] = true
@@ -336,35 +344,38 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
                 
                 //Actually check the Box
                 taskcell.CheckButtonOutlet.isSelected = true
+                print(self?.parsedLocationSectionCLItems)
                 
                 
-                // print(self?.parsedLocationSectionCLItems)
+        
                 
-            } else {
+            } else if taskcell.CheckButtonOutlet.isSelected == true {
                 // print(tableView.indexPath(for: selectedcell)!.section ,tableView.indexPath(for: selectedcell)!.row)
-                
+                    print("the box was checked but now is not ")
                 
                 // this is what sets the value of the array
                 if tableView.indexPath(for: selectedcell)!.section == 0 {
-                    let key = self?.parsedLocationSectionCLItemsKeys[tableView.indexPath(for: selectedcell)!.row]
+                    let key = self?.parsedLocationSectionCLItemsKeys.sorted()[tableView.indexPath(for: selectedcell)!.row]
                     self?.parsedLocationSectionCLItems[key!] = false
-                    
+                    //  print(key)
                 }else if tableView.indexPath(for: selectedcell)!.section == 1 {
-                    let key = self?.parsedHoldingSectionCLItemsKeys[tableView.indexPath(for: selectedcell)!.row]
+                    let key = self?.parsedHoldingSectionCLItemsKeys.sorted()[tableView.indexPath(for: selectedcell)!.row]
                     self?.parsedHoldingSectionCLItems[key!] = false
                     
                 }else if tableView.indexPath(for: selectedcell)!.section == 2 {
-                    let key = self?.parsedVendorSectionCLItemsKeys[tableView.indexPath(for: selectedcell)!.row]
+                    let key = self?.parsedVendorSectionCLItemsKeys.sorted()[tableView.indexPath(for: selectedcell)!.row]
                     self?.parsedVendorSectionCLItems[key!] = false
                     
                 }else {
-                    let key = self?.parsedOtherSectionCLItemsKeys[tableView.indexPath(for: selectedcell)!.row]
+                    let key = self?.parsedOtherSectionCLItemsKeys.sorted()[tableView.indexPath(for: selectedcell)!.row]
                     self?.parsedOtherSectionCLItems[key!] = false
                 }
                 
                 
                 //Actually check the Box
                 taskcell.CheckButtonOutlet.isSelected = false
+                print(self?.parsedLocationSectionCLItems)
+                //self?.checkListTableView.reloadData()
             }
             
             
@@ -406,10 +417,11 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         
         let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
-            print("Delete button tapped")
+            print("Delete button tapped \(index)")
+            
         }
         delete.backgroundColor = .red
-        
+        // You still have to implement the delete function***
         return [delete]
     }
     

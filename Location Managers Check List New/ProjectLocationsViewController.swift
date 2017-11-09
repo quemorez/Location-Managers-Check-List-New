@@ -16,6 +16,7 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
     var error:String = ""
     var Locations = [PFObject]()
     var LocationsNames = [String]()
+    var LocationsProgress = [Int]()
     var SelectedLocation = ""
     var screwup = false
     
@@ -72,6 +73,7 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
             Location["HoldingSectionCLItems"] = HoldingSectionDictionary
             Location["VendorSectionCLItems"] = VendorSectionDictionary
             Location["OtherSectionCLItems"] = OtherSectionDictionary
+            Location["PercentComplete"] = 0
             Location.saveInBackground(block: { (success, error) in
                 if success == true {
                     
@@ -101,7 +103,10 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
                                 self.Locations.append(object)
                                 
                                 let Name: String = object["Name"] as! String
+                                let Progress: Int = object["PercentComplete"] as! Int
+                                
                                 self.LocationsNames.append(Name)
+                                self.LocationsProgress.append(Progress)
                                 //print(self.ProjectsTitles)
                                 self.LocationsTableView.reloadData()
                                 
@@ -140,10 +145,13 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
     
     override func viewDidAppear(_ animated: Bool) {
         
+        
+        
         // Var clean up
         self.SelectedLocation = ""
         self.LocationsNames.removeAll(keepingCapacity: true)
         self.Locations.removeAll(keepingCapacity: true)
+        self.LocationsProgress.removeAll(keepingCapacity: true)
         
         
         //creates an activity maker to tell users that a save is in process
@@ -183,8 +191,11 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
                     self.Locations.append(object)
                     
                     let Name: String = object["Name"] as! String
+                    let Progress: Int = object["PercentComplete"] as! Int
+                    
                     self.LocationsNames.append(Name)
-                    //print(self.ProjectsTitles)
+                    self.LocationsProgress.append(Progress)
+                    print("location progress is \(self.LocationsProgress)")
                     self.LocationsTableView.reloadData()
                     
                     
@@ -212,11 +223,17 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        //cell.backgroundColor = UIColor.darkGray
-        cell.textLabel?.text = self.LocationsNames[indexPath.row]
         
-        return cell
+        let LocationCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LocationTableViewCell
+        
+        //cell.backgroundColor = UIColor.darkGray
+        LocationCell.LocationNameLabel.text = self.LocationsNames[indexPath.row]
+        print(self.LocationsProgress[indexPath.row])
+        LocationCell.PregressBar.progress = Float( Double (self.LocationsProgress[indexPath.row]) / Double (100))
+        print(Float( Double (self.LocationsProgress[indexPath.row]) / Double (100)))
+        
+        
+        return LocationCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

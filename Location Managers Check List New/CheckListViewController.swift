@@ -272,30 +272,37 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
         var taskBoolValue = false
         
         if indexPath.section == 0 {
+            if parsedLocationSectionCLItemsKeys.count >= 0 {
             checkListTask = parsedLocationSectionCLItemsKeys.sorted()[indexPath.row]
             taskBoolValue = parsedLocationSectionCLItems[checkListTask]!
             if parsedLocationSectionCLItems[checkListTask]! == true{
                 self.numberComplete += 1
                 print(numberComplete)
+                }
             }
-            
         }else if indexPath.section == 1 {
+            if parsedHoldingSectionCLItemsKeys.count >= 0 {
             checkListTask = parsedHoldingSectionCLItemsKeys.sorted()[indexPath.row]
             taskBoolValue = parsedHoldingSectionCLItems[checkListTask]!
             if parsedHoldingSectionCLItems[checkListTask]! == true{
                 self.numberComplete += 1
+                }
             }
         }else if indexPath.section == 2 {
+            if parsedVendorSectionCLItemsKeys.count >= 0 {
             checkListTask = parsedVendorSectionCLItemsKeys.sorted()[indexPath.row]
             taskBoolValue = parsedVendorSectionCLItems[checkListTask]!
             if parsedVendorSectionCLItems[checkListTask]! == true{
                 self.numberComplete += 1
+                }
             }
-        }else {
+        }else if indexPath.section == 3 {
+            if parsedOtherSectionCLItemsKeys.count >= 0 {
             checkListTask = parsedOtherSectionCLItemsKeys.sorted()[indexPath.row]
-            taskBoolValue = parsedOtherSectionCLItems[checkListTask]!
+            taskBoolValue = ((parsedOtherSectionCLItems[checkListTask]))!
             if parsedOtherSectionCLItems[checkListTask]! == true{
                 self.numberComplete += 1
+            }
             }
         }
         
@@ -417,11 +424,78 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         
         let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
-            print("Delete button tapped \(index)")
+            print("Delete button tapped, the section is \(index.section)")
+            print(" the list item is  at \(index.row)")
             
+            if index.section == 0 {
+                let deletedItem = self.parsedLocationSectionCLItemsKeys.sorted()[index.row]
+                self.parsedLocationSectionCLItems.removeValue(forKey: deletedItem)
+                print(deletedItem)
+                print(self.parsedLocationSectionCLItems)
+                
+                let lazyMapCollection4 = self.parsedLocationSectionCLItems.keys
+                let stringArray4 = Array(lazyMapCollection4)
+                self.parsedLocationSectionCLItemsKeys.removeAll()
+                self.parsedLocationSectionCLItemsKeys += stringArray4
+                
+                print(self.parsedLocationSectionCLItems)
+                self.checkListTableView.reloadData()
+                
+            }else if index.section == 1  {
+                let deletedItem = self.parsedHoldingSectionCLItemsKeys.sorted()[index.row]
+                self.parsedHoldingSectionCLItems.removeValue(forKey: deletedItem)
+                print(deletedItem)
+                print(self.parsedHoldingSectionCLItems)
+                
+                let lazyMapCollection4 = self.parsedHoldingSectionCLItems.keys
+                let stringArray4 = Array(lazyMapCollection4)
+                self.parsedHoldingSectionCLItemsKeys.removeAll()
+                self.parsedHoldingSectionCLItemsKeys += stringArray4
+                
+                
+                self.checkListTableView.reloadData()
+                
+                print(self.parsedHoldingSectionCLItems)
+                
+            }else if index.section == 2 {
+                let deletedItem = self.parsedVendorSectionCLItemsKeys.sorted()[index.row]
+                self.parsedVendorSectionCLItems.removeValue(forKey: deletedItem)
+                print(deletedItem)
+                print(self.parsedVendorSectionCLItems)
+                
+                let lazyMapCollection4 = self.parsedVendorSectionCLItems.keys
+                let stringArray4 = Array(lazyMapCollection4)
+                self.parsedVendorSectionCLItemsKeys.removeAll()
+                self.parsedVendorSectionCLItemsKeys += stringArray4
+                
+                
+                self.checkListTableView.reloadData()
+                
+                print(self.parsedVendorSectionCLItems)
+                
+            }else {
+                let deletedItem = self.parsedOtherSectionCLItemsKeys.sorted()[index.row]
+                self.parsedOtherSectionCLItems.removeValue(forKey: deletedItem)
+                print(deletedItem)
+                print(self.parsedOtherSectionCLItems)
+                
+                let lazyMapCollection4 = self.parsedOtherSectionCLItems.keys
+                let stringArray4 = Array(lazyMapCollection4)
+                self.parsedOtherSectionCLItemsKeys.removeAll()
+                self.parsedOtherSectionCLItemsKeys += stringArray4
+                
+            
+                self.checkListTableView.reloadData()
+                print(self.parsedOtherSectionCLItemsKeys)
+                print(self.parsedOtherSectionCLItems)
+            }
+           
         }
         delete.backgroundColor = .red
+        
+        //self.checkListTableView.reloadData()
         // You still have to implement the delete function***
+        //testing if the scource tree is still working
         return [delete]
     }
     

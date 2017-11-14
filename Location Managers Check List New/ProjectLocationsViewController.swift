@@ -320,8 +320,12 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
             let CheckListView = segue.destination as! CheckListViewController
             CheckListView.CurrentLocation = self.SelectedLocation
             CheckListView.CurrentProject = self.currentProject
+        } else if segue.identifier == "settingsSegue"{
+            print("settings fired")
+            let addProjectView = segue.destination as! AddProjectViewController
+            addProjectView.CurrentLocation = self.SelectedLocation
+            addProjectView.CurrentProject = self.currentProject
         }
-        
     }
     
 }

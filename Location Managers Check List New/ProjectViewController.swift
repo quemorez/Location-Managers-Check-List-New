@@ -151,6 +151,8 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
         
         let settings = UITableViewRowAction(style: .normal, title: "Settings") { action, index in
             print("settings button tapped")
+            self.SelectedProject = self.ProjectsTitles[index.row]
+            self.performSegue(withIdentifier:"settingsSegue", sender: self)
         }
         settings.backgroundColor = .orange
         
@@ -236,6 +238,10 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
         if segue.identifier == "ProjectToLocationSegue"{
             let LocationView = segue.destination as! ProjectLocationsViewController
             LocationView.currentProject = self.SelectedProject
+        }else if segue.identifier == "settingsSegue"{
+            print("settings fired")
+            let addProjectView = segue.destination as! AddProjectViewController
+            addProjectView.CurrentProject = SelectedProject
         }
         
     }

@@ -13,6 +13,11 @@ var savedTitle = ""
 
 class AddProjectViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var CurrentLocation = ""
+    var CurrentProject = ""
+    var projectSettings = false
+
+    
     var TeamMembers = [String]()
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -72,7 +77,7 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
             UIApplication.shared.beginIgnoringInteractionEvents()
             
             
-            // Mark: -  Query
+            // Mark: -  Query Before Save
             
             let query = PFQuery(className: "Project")
             query.whereKey("Title", equalTo: projectTitleTextField.text!.uppercased() as String)
@@ -91,12 +96,13 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
                     
                 } else if let objects = objects {
                     
-                    if objects.count > 0 {
-                        self.activityIndicator.stopAnimating()
-                        UIApplication.shared.endIgnoringInteractionEvents()
-                        self.displayAlert("There is a Project with same title", error: "Please Change name of Project or contact the Location Manager and have your email added to project")
-                        self.projectTitleTextField.text? = ""
-                        
+                    if self.projectSettings == false {
+                        if objects.count > 0 {
+                            self.activityIndicator.stopAnimating()
+                            UIApplication.shared.endIgnoringInteractionEvents()
+                            self.displayAlert("There is a Project with same title", error: "Please Change name of Project or contact the Location Manager and have your email added to project")
+                            self.projectTitleTextField.text? = ""
+                        }
                     }else {
                         let Project = PFObject(className: "Project")
                         Project["Title"] = self.projectTitleTextField.text!.uppercased() as String
@@ -109,7 +115,10 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
                         PFACL.setDefault(acl, withAccessForCurrentUser: true)
                         Project.saveInBackground(block: { (success, error) in
                             if success == true {
+                                self.TeamMembers.removeAll()
+                                self.CurrentProject.removeAll()
                                 
+                                self.projectSettings = false
                                 self.performSegue(withIdentifier: "ProjectSavedSeque", sender: self)
                                 //stops Activity Indicator
                                 self.activityIndicator.stopAnimating()
@@ -143,6 +152,11 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(CurrentProject)
+        if CurrentProject != ""{
+            projectTitleTextField.text = CurrentProject
+        }
+        
         if savedTitle != "" {
             projectTitleTextField.text = savedTitle
         }
@@ -169,12 +183,57 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print(CurrentProject)
+        if CurrentProject != ""{
+            projectTitleTextField.text = CurrentProject
+            savedTitle = CurrentProject
+        }
         if savedTitle != "" {
             projectTitleTextField.text = savedTitle
         }
         
+        // Mark: -  Query for team members
+        
+        let query = PFQuery(className: "Project")
+        query.whereKey("Title", equalTo: projectTitleTextField.text!.uppercased() as String)
+        //query.whereKey("Title", contains: projectTitleTextField.text! as String)
+        
+        
+        query.findObjectsInBackground { (objects, error) in
+            
+            if error != nil{
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
+                print("There is a error while searching please check internet connection")
+                
+                self.displayAlert("No Project found", error: "Please check internet conection")
+                print(error)
+                
+            } else if let objects = objects {
+                for object in objects {
+                    let teammembers = object["TeamMembers"] as! [String]
+                    for teammember in teammembers {
+                        self.TeamMembers.append(teammember)
+                        print(self.TeamMembers)
+                        self.projectSettings = true
+                        self.teamMembersTableView.reloadData()
+                    }
+                    
+                }
+             }
+        }
+
+        
+        
+        
         self.teamMembersTableView.reloadData()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return TeamMembers.count
@@ -203,6 +262,9 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
         self.present(alert, animated: true, completion: nil)
         
     }
+    
+    
+ 
     
     /*
      // MARK: - Navigation

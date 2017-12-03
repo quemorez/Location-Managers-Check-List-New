@@ -242,6 +242,10 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
             print("settings fired")
             let addProjectView = segue.destination as! AddProjectViewController
             addProjectView.CurrentProject = SelectedProject
+        }else if segue.identifier == "addProjectSegue"{
+            print("settings fired")
+            let addProjectView = segue.destination as! AddProjectViewController
+            addProjectView.CurrentProject = ""
         }
         
     }

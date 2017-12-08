@@ -60,7 +60,6 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
-        
         // Mark: -  Query
         let userEmail = PFUser.current()?.email!
         //let predicate = NSPredicate(format: "TeamMembers = \(String(describing: userEmail))")
@@ -172,7 +171,7 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
                     print("There is a error while searching please check internet connection")
                     
                     self.displayAlert("Location not found", error: "Please check internet conection")
-                    print(error)
+                    print(error as Any)
                     
                 }else if let objects = objects {
                     
@@ -192,7 +191,7 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
                         
                         object.saveInBackground(block: { (success, error) in
                             if error != nil{
-                                print(error)
+                                print(error as Any)
                             }else {
                                 self.displayAlert("Project Deleted", error: "Your Name has been removed from Project")
                             }
@@ -242,10 +241,14 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
             print("settings fired")
             let addProjectView = segue.destination as! AddProjectViewController
             addProjectView.CurrentProject = SelectedProject
+            addProjectView.projectSettings = true
         }else if segue.identifier == "addProjectSegue"{
-            print("settings fired")
+            
             let addProjectView = segue.destination as! AddProjectViewController
             addProjectView.CurrentProject = ""
+            addProjectView.projectSettings = false
+            savedTitle = ""
+            CurrentProjectID = ""
         }
         
     }

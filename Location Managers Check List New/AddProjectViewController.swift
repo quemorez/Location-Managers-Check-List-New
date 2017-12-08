@@ -10,15 +10,15 @@ import UIKit
 import Parse
 
 var savedTitle = ""
+var CurrentProjectID = ""
 
 class AddProjectViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var CurrentLocation = ""
     var CurrentProject = ""
-    var projectSettings = false
-
-    
+    var projectSettings = Bool()
     var TeamMembers = [String]()
+    //var CurrentProjectID = ""
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     var error:String = ""
@@ -53,6 +53,8 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     @IBAction func saveProjectTitle(_ sender: Any) {
+        
+        // There is something wrong with this function, I think you need to check to see if you are coming from the settings before you querry anything put all querries inside that if statement.
         projectTitleTextField.endEditing(true)
         
         if projectTitleTextField.text == "" {
@@ -77,90 +79,37 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
             UIApplication.shared.beginIgnoringInteractionEvents()
             
             
-            // Mark: -  Query Before Save
-            
-            let query = PFQuery(className: "Project")
-            query.whereKey("Title", equalTo: projectTitleTextField.text!.uppercased() as String)
-            //query.whereKey("Title", contains: projectTitleTextField.text! as String)
-            
-            
-            query.findObjectsInBackground { (objects, error) in
+            if projectSettings == false {
+                // Mark: -  Query Before Save
                 
-                if error != nil{
-                    self.activityIndicator.stopAnimating()
-                    UIApplication.shared.endIgnoringInteractionEvents()
-                    print("There is a error while searching please check internet connection")
+                let query = PFQuery(className: "Project")
+                query.whereKey("Title", equalTo: projectTitleTextField.text!.uppercased() as String)
+                //query.whereKey("Title", contains: projectTitleTextField.text! as String)
+                
+                
+                query.findObjectsInBackground { (objects, error) in
                     
-                    self.displayAlert("We cannot save Project", error: "Please check internet conection")
-                    print(error)
-                    
-                } else if let objects = objects {
-                    
-                    if self.projectSettings == false {
-                        if objects.count > 0 {
-                            self.activityIndicator.stopAnimating()
-                            UIApplication.shared.endIgnoringInteractionEvents()
-                            self.displayAlert("There is a Project with same title", error: "Please Change name of Project or contact the Location Manager and have your email added to project")
-                            self.projectTitleTextField.text? = ""
-                        }else {
-                            let Project = PFObject(className: "Project")
-                            Project["Title"] = self.projectTitleTextField.text!.uppercased() as String
-                            Project["Creater"] = PFUser.current()?.username!
-                            self.TeamMembers.removeAll()
-                            self.TeamMembers.append((PFUser.current()?.email!)!)
-                            Project["TeamMembers"] = self.TeamMembers
-                            let acl = PFACL()
-                            acl.getPublicReadAccess = true
-                            acl.getPublicWriteAccess = true
-                            PFACL.setDefault(acl, withAccessForCurrentUser: true)
-                            Project.saveInBackground(block: { (success, error) in
-                                if success == true {
-                                    self.TeamMembers.removeAll()
-                                    self.CurrentProject.removeAll()
-                                    
-                                    self.projectSettings = false
-                                    self.performSegue(withIdentifier: "ProjectSavedSeque", sender: self)
-                                    //stops Activity Indicator
-                                    self.activityIndicator.stopAnimating()
-                                    UIApplication.shared.endIgnoringInteractionEvents()
-                                    
-                                    self.displayAlert("Project Saved", error: "get started by adding locations to your project")
-                                    
-                                    
-                                    //Segue to Project list
-                                    
-                                    
-                                } else {
-                                    //stops Activity Indicator
-                                    self.activityIndicator.stopAnimating()
-                                    UIApplication.shared.endIgnoringInteractionEvents()
-                                    
-                                    self.displayAlert("Could not save Project", error: "Please check conection and try again")
-                                    
-                                }
-                                
-                            })
-                        }
-                    }else {
-                        var objectID = ""
+                    if error != nil{
+                        self.activityIndicator.stopAnimating()
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                        print("There is a error while searching please check internet connection")
                         
-                        for object in objects{
-                            objectID = object["objectID"] as! String
-                        }
+                        self.displayAlert("We cannot save Project", error: "Please check internet conection")
+                        print(error)
                         
-                        let query = PFQuery(className: "Project")
-                        query.getObjectInBackground(withId: objectID, block: { (Project, error) in
-                            if error != nil {
+                    } else if let objects = objects {
+                        
+                        if self.projectSettings == false {
+                            if objects.count > 0 {
                                 self.activityIndicator.stopAnimating()
                                 UIApplication.shared.endIgnoringInteractionEvents()
-                                print("There is a error while searching please check internet connection")
-                                
-                                self.displayAlert("We cannot Update Project", error: "Please check internet conection and try again")
-                                print(error)
-                            } else if let Project = Project {
-                                
+                                self.displayAlert("There is a Project with same title", error: "Please Change name of Project or contact the Location Manager and have your email added to project")
+                                self.projectTitleTextField.text? = ""
+                            }else {
+                                let Project = PFObject(className: "Project")
                                 Project["Title"] = self.projectTitleTextField.text!.uppercased() as String
                                 Project["Creater"] = PFUser.current()?.username!
+                                self.TeamMembers.removeAll()
                                 self.TeamMembers.append((PFUser.current()?.email!)!)
                                 Project["TeamMembers"] = self.TeamMembers
                                 let acl = PFACL()
@@ -172,13 +121,13 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
                                         self.TeamMembers.removeAll()
                                         self.CurrentProject.removeAll()
                                         
-                                        self.projectSettings = false
+                                       // self.projectSettings = false
                                         self.performSegue(withIdentifier: "ProjectSavedSeque", sender: self)
                                         //stops Activity Indicator
                                         self.activityIndicator.stopAnimating()
                                         UIApplication.shared.endIgnoringInteractionEvents()
                                         
-                                        self.displayAlert("Project Updated", error: "Two Points for keeping things up to date")
+                                        self.displayAlert("Project Saved", error: "get started by adding locations to your project")
                                         
                                         
                                         //Segue to Project list
@@ -189,19 +138,73 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
                                         self.activityIndicator.stopAnimating()
                                         UIApplication.shared.endIgnoringInteractionEvents()
                                         
-                                        self.displayAlert("Could not update Project", error: "Please check conection and try again")
+                                        self.displayAlert("Could not save Project", error: "Please check conection and try again")
                                         
                                     }
                                     
                                 })
                             }
-                        })
-                        
-                        
-                        
-                        
+                        }
                     }
                 }
+                
+            }else {
+                // Mark: -  Settings Save area
+                print("the settings code is running")
+                print("the current project ID is \(CurrentProjectID)")
+                // Getting object and saving updates
+                let query = PFQuery(className: "Project")
+                query.getObjectInBackground(withId: CurrentProjectID, block: { (Project, error) in
+                    if error != nil {
+                        print("its saving")
+                        
+                        self.activityIndicator.stopAnimating()
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                        print("There is a error while searching please check internet connection")
+                        
+                        self.displayAlert("We cannot Update Project", error: "Please check internet conection and try again")
+                        print(error as Any)
+                    } else if let updatedProject = Project {
+                        print(updatedProject)
+                        print("its saving")
+                        updatedProject["Title"] = self.projectTitleTextField.text!.uppercased() as String
+                        updatedProject["Creater"] = PFUser.current()?.username!
+                        //self.TeamMembers.append((PFUser.current()?.email!)!)
+                        updatedProject["TeamMembers"] = self.TeamMembers
+                        let acl = PFACL()
+                        acl.getPublicReadAccess = true
+                        acl.getPublicWriteAccess = true
+                        PFACL.setDefault(acl, withAccessForCurrentUser: true)
+                        
+                        updatedProject.saveInBackground(block: { (success, error) in
+                            if success == true {
+                                self.TeamMembers.removeAll()
+                                self.CurrentProject.removeAll()
+                                
+                                //self.projectSettings = false
+                                //Segue to Project list
+                                self.performSegue(withIdentifier: "ProjectSavedSeque", sender: self)
+                                //stops Activity Indicator
+                                self.activityIndicator.stopAnimating()
+                                UIApplication.shared.endIgnoringInteractionEvents()
+                                
+                                self.displayAlert("Project Updated", error: "Two Points for keeping things up to date")
+                                
+                                
+                                
+                                
+                                
+                            } else {
+                                //stops Activity Indicator
+                                self.activityIndicator.stopAnimating()
+                                UIApplication.shared.endIgnoringInteractionEvents()
+                                //self.projectSettings = false
+                                self.displayAlert("Could not update Project", error: "Please check conection and try again")
+                                
+                            }
+                        })
+                    }
+                })
             }
         }
     }
@@ -213,13 +216,53 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         print(CurrentProject)
+        print(projectSettings)
         if CurrentProject != ""{
             projectTitleTextField.text = CurrentProject
+            
+            
+            let query = PFQuery(className: "Project")
+            query.whereKey("Title", equalTo: projectTitleTextField.text!.uppercased() as String)
+            //query.whereKey("Title", contains: projectTitleTextField.text! as String)
+            
+            
+            query.findObjectsInBackground { (objects, error) in
+                
+                if error != nil{
+                    self.activityIndicator.stopAnimating()
+                    //UIApplication.shared.endIgnoringInteractionEvents()
+                    print("There is a error while searching please check internet connection")
+                    
+                    self.displayAlert("No Project found", error: "Please check internet conection")
+                    print(error as Any)
+                    
+                } else if let objects = objects {
+                    for object in objects {
+                        CurrentProjectID = object.objectId!
+                        
+                        let teammembers = object["TeamMembers"] as! [String]
+                        for teammember in teammembers {
+                            
+                            self.TeamMembers.append(teammember)
+                            //print(self.TeamMembers)
+                            //self.projectSettings = true
+                            self.teamMembersTableView.reloadData()
+                        }
+                        
+                    }
+                }
+            }
+            
+            
+            
+            
+            self.teamMembersTableView.reloadData()
         }
         
         if savedTitle != "" {
             projectTitleTextField.text = savedTitle
         }
+        
         //seting up the look of the UI
         projectTitleTextField.layer.cornerRadius = 10
         projectTitleTextField.clipsToBounds = true
@@ -243,6 +286,9 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print(CurrentProject)
+        print(projectSettings)
+        
         self.TeamMembers.removeAll()
         for teamMember in TeamMembers {
             if teamMember != (PFUser.current()?.email!)!{
@@ -253,47 +299,52 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
         if CurrentProject != ""{
             projectTitleTextField.text = CurrentProject
             savedTitle = CurrentProject
+            
+            
+            let query = PFQuery(className: "Project")
+            query.whereKey("Title", equalTo: projectTitleTextField.text!.uppercased() as String)
+            //query.whereKey("Title", contains: projectTitleTextField.text! as String)
+            
+            
+            query.findObjectsInBackground { (objects, error) in
+                
+                if error != nil{
+                    self.activityIndicator.stopAnimating()
+                    //UIApplication.shared.endIgnoringInteractionEvents()
+                    print("There is a error while searching please check internet connection")
+                    
+                    self.displayAlert("No Project found", error: "Please check internet conection")
+                    print(error as Any)
+                    
+                } else if let objects = objects {
+                    for object in objects {
+                        CurrentProjectID = object.objectId!
+                        print(CurrentProjectID)
+                        let teammembers = object["TeamMembers"] as! [String]
+                        for teammember in teammembers {
+                            
+                            self.TeamMembers.append(teammember)
+                            //print(self.TeamMembers)
+                           // self.projectSettings = true
+                            self.teamMembersTableView.reloadData()
+                        }
+                        
+                    }
+                }
+            }
+            
+            
+            
+            
+            self.teamMembersTableView.reloadData()
+            
+            
         }
+        
         if savedTitle != "" {
             projectTitleTextField.text = savedTitle
         }
-        
-        // Mark: -  Query for team members
-        
-        let query = PFQuery(className: "Project")
-        query.whereKey("Title", equalTo: projectTitleTextField.text!.uppercased() as String)
-        //query.whereKey("Title", contains: projectTitleTextField.text! as String)
-        
-        
-        query.findObjectsInBackground { (objects, error) in
-            
-            if error != nil{
-                self.activityIndicator.stopAnimating()
-                UIApplication.shared.endIgnoringInteractionEvents()
-                print("There is a error while searching please check internet connection")
-                
-                self.displayAlert("No Project found", error: "Please check internet conection")
-                print(error)
-                
-            } else if let objects = objects {
-                for object in objects {
-                    let teammembers = object["TeamMembers"] as! [String]
-                    for teammember in teammembers {
-                        
-                        self.TeamMembers.append(teammember)
-                        print(self.TeamMembers)
-                        self.projectSettings = true
-                        self.teamMembersTableView.reloadData()
-                    }
-                    
-                }
-             }
-        }
 
-        
-        
-        
-        self.teamMembersTableView.reloadData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -331,7 +382,7 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
- 
+    
     
     /*
      // MARK: - Navigation

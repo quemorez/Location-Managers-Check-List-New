@@ -79,6 +79,9 @@ class AddCheckListItemViewController: UIViewController,UIPickerViewDelegate,UIPi
             CheckListView.newItem = self.newItem
             CheckListView.CurrentLocation = self.CurrentLocation
             CheckListView.CurrentProject = self.CurrentProject
+            navigationController?.popViewController(animated: true)
+            dismiss(animated: true, completion: nil)
+            //removeFromParentViewController()
             
             print(newItem)
         }

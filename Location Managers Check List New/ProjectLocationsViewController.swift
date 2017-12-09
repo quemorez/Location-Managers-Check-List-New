@@ -73,6 +73,8 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
             Location["HoldingSectionCLItems"] = HoldingSectionDictionary
             Location["VendorSectionCLItems"] = VendorSectionDictionary
             Location["OtherSectionCLItems"] = OtherSectionDictionary
+            Location["NumberOfItems"] = 0
+            Location["NumberComplete"] = 0
             Location["PercentComplete"] = 0
             Location.saveInBackground(block: { (success, error) in
                 if success == true {
@@ -93,7 +95,7 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
                             print("There is a error while searching please check internet connection")
                             
                             self.displayAlert("Location not found", error: "Please check internet conection")
-                            print(error)
+                            print(error as Any)
                             
                         }else if let objects = objects {
                             //print(objects)
@@ -106,7 +108,7 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
                                 let Progress: Int = object["PercentComplete"] as! Int
                                 
                                 self.LocationsNames.append(Name)
-                                self.LocationsProgress.append(Progress)
+                                self.LocationsProgress.append(Int(Progress))
                                 //print(self.ProjectsTitles)
                                 self.LocationsTableView.reloadData()
                                 
@@ -177,7 +179,7 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
                 print("There is a error while searching please check internet connection")
                 
                 self.displayAlert("Location not found", error: "Please check internet conection")
-                print(error)
+                print(error as Any)
                 
             }else if let objects = objects {
                 //print(objects)
@@ -270,7 +272,7 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
                     print("There is a error while searching please check internet connection")
                     
                     self.displayAlert("Location not found", error: "Please check internet conection")
-                    print(error)
+                    print(error as Any)
                     
                 }else if let objects = objects {
                     //print(objects)

@@ -1,15 +1,21 @@
 PODS:
   - Bolts/Tasks (1.8.4)
+  - IQKeyboardManagerSwift (5.0.6)
   - Parse (1.15.0):
     - Bolts/Tasks (~> 1.8)
+  - UICircularProgressRing (1.7.5)
 
 DEPENDENCIES:
+  - IQKeyboardManagerSwift
   - Parse
+  - UICircularProgressRing
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  IQKeyboardManagerSwift: 02bfbb0dff71c66d0ab77d80d25dfce0c3717735
   Parse: c0519f8fbf57bd0334f75cd22ac032d86ee55464
+  UICircularProgressRing: b35e45dc82aac8009d038ef4d2e19718675df2bd
 
-PODFILE CHECKSUM: 516117529424a1bd4b595dccdcfc991ac680ecb7
+PODFILE CHECKSUM: 7e27997af117eb6609ecddd5ddb5b8d1d3238e8f
 
-COCOAPODS: 1.3.0.beta.1
+COCOAPODS: 1.3.1

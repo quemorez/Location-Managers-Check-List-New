@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import Foundation
 
 
 
@@ -115,7 +116,7 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
                     self.parsedHoldingSectionCLItems = object ["HoldingSectionCLItems"] as! Dictionary
                     self.parsedVendorSectionCLItems = object ["VendorSectionCLItems"] as! Dictionary
                     self.parsedOtherSectionCLItems = object ["OtherSectionCLItems"] as! Dictionary
-                    
+                   // self.numberComplete = object ["NumberComplete"] as! Int
                     
                     // handle new checklist item
                     for (newKey,newValue) in self.newItem {
@@ -172,6 +173,11 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+    
+        
+      FindCompletedTasks()
+        
+        
         
         let numberOfItems = parsedLocationSectionCLItemsKeys.count + parsedHoldingSectionCLItemsKeys.count + parsedVendorSectionCLItemsKeys.count + parsedOtherSectionCLItemsKeys.count
         
@@ -180,7 +186,8 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
        // self.PercentComplete = ((Int (self.numberComplete)) / (Int (numberOfItems)) * 100)
         //print(PercentComplete)
         let test = Double(self.numberComplete) / Double(numberOfItems)
-        self.PercentComplete = Int(test * 100)
+        let formatedNumber = round(test)
+        self.PercentComplete = Int(formatedNumber * 100)
         print(PercentComplete)
         
         //creates an activity maker to tell users that a save is in process
@@ -207,6 +214,8 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
                 Location["HoldingSectionCLItems"] = self.parsedHoldingSectionCLItems
                 Location["VendorSectionCLItems"] = self.parsedVendorSectionCLItems
                 Location["OtherSectionCLItems"] = self.parsedOtherSectionCLItems
+                Location["NumberOfItems"] = numberOfItems
+                Location["NumberComplete"] = self.numberComplete
                 Location["PercentComplete"] = self.PercentComplete
                 Location.saveInBackground(block: { (success, error) in
                     if success == true {
@@ -267,7 +276,7 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        self.numberComplete = 0
+       // self.numberComplete = 0
         var checkListTask = ""
         var taskBoolValue = false
         
@@ -276,8 +285,8 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
             checkListTask = parsedLocationSectionCLItemsKeys.sorted()[indexPath.row]
             taskBoolValue = parsedLocationSectionCLItems[checkListTask]!
             if parsedLocationSectionCLItems[checkListTask]! == true{
-                self.numberComplete += 1
-                print(numberComplete)
+                //self.numberComplete = 1 + numberComplete
+                //print("this is incromenting \(numberComplete)")
                 }
             }
         }else if indexPath.section == 1 {
@@ -285,7 +294,8 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
             checkListTask = parsedHoldingSectionCLItemsKeys.sorted()[indexPath.row]
             taskBoolValue = parsedHoldingSectionCLItems[checkListTask]!
             if parsedHoldingSectionCLItems[checkListTask]! == true{
-                self.numberComplete += 1
+                //self.numberComplete = 1 + numberComplete
+               // print("this is incromenting \(numberComplete)")
                 }
             }
         }else if indexPath.section == 2 {
@@ -293,7 +303,8 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
             checkListTask = parsedVendorSectionCLItemsKeys.sorted()[indexPath.row]
             taskBoolValue = parsedVendorSectionCLItems[checkListTask]!
             if parsedVendorSectionCLItems[checkListTask]! == true{
-                self.numberComplete += 1
+               // self.numberComplete = 1 + numberComplete
+               // print("this is incromenting \(numberComplete)")
                 }
             }
         }else if indexPath.section == 3 {
@@ -301,7 +312,8 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
             checkListTask = parsedOtherSectionCLItemsKeys.sorted()[indexPath.row]
             taskBoolValue = ((parsedOtherSectionCLItems[checkListTask]))!
             if parsedOtherSectionCLItems[checkListTask]! == true{
-                self.numberComplete += 1
+               // self.numberComplete = 1 + numberComplete
+               // print("this is incromenting \(numberComplete)")
             }
             }
         }
@@ -515,6 +527,34 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+    func FindCompletedTasks(){
+        numberComplete = 0
+        for (key,value) in parsedLocationSectionCLItems {
+            if value == true {
+                numberComplete += 1
+                print("this is going through the for loop and incromenting the completed values \(numberComplete)")
+            }
+        }
+        for (_,value) in parsedHoldingSectionCLItems {
+            if value == true {
+                numberComplete += 1
+                print("this is going through the for loop and incromenting the completed values \(numberComplete)")
+            }
+        }
+        for (_,value) in parsedVendorSectionCLItems {
+            if value == true {
+                numberComplete += 1
+                print("this is going through the for loop and incromenting the completed values \(numberComplete)")
+            }
+        }
+        for (_,value) in parsedOtherSectionCLItems {
+            if value == true {
+                numberComplete += 1
+                print("this is going through the for loop and incromenting the completed values \(numberComplete)")
+            }
+        }
+        return
+    }
     
     
     

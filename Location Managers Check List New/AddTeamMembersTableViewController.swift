@@ -16,7 +16,8 @@ class AddTeamMembersTableViewController: UITableViewController, UISearchResultsU
     var Usersemail = [String]()
     var filteredUseremails = [String]()
     var TeamMembers = [String]()
-    
+    var projectSettings = Bool()
+    var CurrentProject = ""
     
     override func viewDidAppear(_ animated: Bool) {
         
@@ -65,7 +66,7 @@ class AddTeamMembersTableViewController: UITableViewController, UISearchResultsU
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        print(projectSettings)
         
         
         // seting up members table search functionality
@@ -136,7 +137,7 @@ class AddTeamMembersTableViewController: UITableViewController, UISearchResultsU
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
+       
         
         let cell:UITableViewCell = tableView.cellForRow(at: indexPath)!
         
@@ -167,6 +168,7 @@ class AddTeamMembersTableViewController: UITableViewController, UISearchResultsU
         }
         
         self.tableView.reloadData()
+      
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -192,8 +194,11 @@ class AddTeamMembersTableViewController: UITableViewController, UISearchResultsU
     //Send team mate data to add project controler
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "saveTeamMembersSegue" {
+            print("this should be sending over \(TeamMembers)")
             let AddProjectView = segue.destination as! AddProjectViewController
             AddProjectView.TeamMembers = self.TeamMembers
+            AddProjectView.projectSettings = projectSettings
+            AddProjectView.CurrentProject = CurrentProject
         }
     }
     
@@ -213,6 +218,7 @@ class AddTeamMembersTableViewController: UITableViewController, UISearchResultsU
     }
     
     
+   
     
     
 }

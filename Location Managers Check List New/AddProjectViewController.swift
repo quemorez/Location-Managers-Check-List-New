@@ -18,6 +18,7 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
     var CurrentProject = ""
     var projectSettings = Bool()
     var TeamMembers = [String]()
+    var TeamMemberSwitch = false
     //var CurrentProjectID = ""
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
@@ -54,7 +55,9 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func saveProjectTitle(_ sender: Any) {
         
-        // There is something wrong with this function, I think you need to check to see if you are coming from the settings before you querry anything put all querries inside that if statement.
+        print(TeamMembers)
+        
+        
         projectTitleTextField.endEditing(true)
         
         if projectTitleTextField.text == "" {
@@ -109,7 +112,7 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
                                 let Project = PFObject(className: "Project")
                                 Project["Title"] = self.projectTitleTextField.text!.uppercased() as String
                                 Project["Creater"] = PFUser.current()?.username!
-                                self.TeamMembers.removeAll()
+                                //self.TeamMembers.removeAll()
                                 self.TeamMembers.append((PFUser.current()?.email!)!)
                                 Project["TeamMembers"] = self.TeamMembers
                                 let acl = PFACL()
@@ -215,15 +218,20 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewdidLoad\(TeamMembers)")
         print(CurrentProject)
         print(projectSettings)
+        
+      
+        
+        
         if CurrentProject != ""{
             projectTitleTextField.text = CurrentProject
-            
+           // projectTitleTextField.isUserInteractionEnabled = false
             
             let query = PFQuery(className: "Project")
             query.whereKey("Title", equalTo: projectTitleTextField.text!.uppercased() as String)
-            //query.whereKey("Title", contains: projectTitleTextField.text! as String)
+            
             
             
             query.findObjectsInBackground { (objects, error) in
@@ -239,11 +247,11 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
                 } else if let objects = objects {
                     for object in objects {
                         CurrentProjectID = object.objectId!
-                        
+                        print("this is the objects\(object)")
                         let teammembers = object["TeamMembers"] as! [String]
                         for teammember in teammembers {
-                            
-                            self.TeamMembers.append(teammember)
+                           // self.TeamMembers.removeAll()
+                            //self.TeamMembers.append(teammember)
                             //print(self.TeamMembers)
                             //self.projectSettings = true
                             self.teamMembersTableView.reloadData()
@@ -286,19 +294,24 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("viewdidAppear\(TeamMembers)")
         print(CurrentProject)
         print(projectSettings)
         
-        self.TeamMembers.removeAll()
+        //self.TeamMembers.removeAll()
         for teamMember in TeamMembers {
             if teamMember != (PFUser.current()?.email!)!{
-                self.TeamMembers.append(teamMember)
+               // self.TeamMembers.append(teamMember)
             }
         }
         print(CurrentProject)
         if CurrentProject != ""{
+            
+            //self.TeamMembers.removeAll()
+            //self.TeamMembers.
             projectTitleTextField.text = CurrentProject
             savedTitle = CurrentProject
+            projectTitleTextField.isUserInteractionEnabled = false
             
             
             let query = PFQuery(className: "Project")
@@ -321,14 +334,20 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
                         CurrentProjectID = object.objectId!
                         print(CurrentProjectID)
                         let teammembers = object["TeamMembers"] as! [String]
-                        for teammember in teammembers {
+                          for teammember in teammembers {
+                            if self.TeamMembers.contains(teammember) {
+                                
+                            }else {
+                                self.TeamMembers.append(teammember)
+                                print(self.TeamMembers)
+                                self.TeamMemberSwitch = true
                             
-                            self.TeamMembers.append(teammember)
-                            //print(self.TeamMembers)
-                           // self.projectSettings = true
-                            self.teamMembersTableView.reloadData()
-                        }
+                            }
+                           
+                            
+                         }
                         
+                        self.teamMembersTableView.reloadData()
                     }
                 }
             }
@@ -384,14 +403,16 @@ class AddProjectViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     
-    /*
+   
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
+          override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "AddTeamMembersSegue"{
+                let addProjectView = segue.destination as! AddTeamMembersTableViewController
+                addProjectView.projectSettings = projectSettings
+                addProjectView.CurrentProject = CurrentProject
+                addProjectView.TeamMembers = TeamMembers
+            }
      }
-     */
+    
     
 }

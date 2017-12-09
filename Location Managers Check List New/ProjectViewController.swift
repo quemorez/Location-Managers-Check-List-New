@@ -102,7 +102,7 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
             }
         }
         
-        print(self.ProjectsTitles)
+        //print(self.ProjectsTitles)
         self.projectTableView.reloadData()
         
         
@@ -136,7 +136,7 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+       // print(indexPath.row)
         self.SelectedProject = self.ProjectsTitles[indexPath.row]
         self.performSegue(withIdentifier: "ProjectToLocationSegue", sender: self)
     }
@@ -149,14 +149,14 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         
         let settings = UITableViewRowAction(style: .normal, title: "Settings") { action, index in
-            print("settings button tapped")
+           // print("settings button tapped")
             self.SelectedProject = self.ProjectsTitles[index.row]
             self.performSegue(withIdentifier:"settingsSegue", sender: self)
         }
         settings.backgroundColor = .orange
         
         let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
-            print("Delete button tapped")
+            //print("Delete button tapped")
             let userEmail = PFUser.current()?.email!
             
             let query = PFQuery(className: "Project")
@@ -177,16 +177,16 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
                     
                     
                     for object in objects {
-                        print(object)
+                        //print(object)
                         
                         
                         var teamarray = object["TeamMembers"] as! Array<String?>
-                        print("the Team array is \(teamarray)")
+                        //print("the Team array is \(teamarray)")
                         
                         let userindex = (teamarray.index(where: { $0 == userEmail})) as! Int
-                        print(userindex)
+                      //  print(userindex)
                         teamarray.remove(at: userindex)
-                        print(teamarray)
+                        //print(teamarray)
                         object["TeamMembers"] = teamarray
                         
                         object.saveInBackground(block: { (success, error) in
@@ -242,6 +242,7 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
             let addProjectView = segue.destination as! AddProjectViewController
             addProjectView.CurrentProject = SelectedProject
             addProjectView.projectSettings = true
+            addProjectView.TeamMemberSwitch = false
         }else if segue.identifier == "addProjectSegue"{
             
             let addProjectView = segue.destination as! AddProjectViewController
@@ -249,6 +250,7 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
             addProjectView.projectSettings = false
             savedTitle = ""
             CurrentProjectID = ""
+            addProjectView.TeamMemberSwitch = false
         }
         
     }

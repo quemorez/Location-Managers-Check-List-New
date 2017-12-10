@@ -27,7 +27,16 @@ class AddCheckListItemViewController: UIViewController,UIPickerViewDelegate,UIPi
     @IBOutlet var saveButtonOutlet: UIButton!
     
     @IBAction func saveButtonAction(_ sender: Any) {
-        performSegue(withIdentifier: "SaveChecklistItemSegue", sender: self)
+        //self.dismiss(animated: true)
+       // performSegue(withIdentifier: "SaveChecklistItemSegue", sender: self)
+        //self.dismiss(animated: true)
+        
+        self.performSegue(withIdentifier: "SaveChecklistItemSegue", sender: self)
+        //stops Activity Indicator
+        //self.activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
+        
+        self.displayAlert("Updated Check", error: "Just adding to the list of things you have to do!")
     }
     
     
@@ -66,7 +75,20 @@ class AddCheckListItemViewController: UIViewController,UIPickerViewDelegate,UIPi
         self.selectedCategory = categories[row]
     }
     
-    
+    //Helper Methiods
+    //this function creats and alert that you can display errors with
+    func displayAlert(_ title:String,error:String){
+        
+        let alert = UIAlertController(title:title, message: error, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            
+            //self.dismiss(animated: true, completion: nil)
+            
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
     
     // MARK: - Navigation
     
@@ -79,8 +101,8 @@ class AddCheckListItemViewController: UIViewController,UIPickerViewDelegate,UIPi
             CheckListView.newItem = self.newItem
             CheckListView.CurrentLocation = self.CurrentLocation
             CheckListView.CurrentProject = self.CurrentProject
-            navigationController?.popViewController(animated: true)
-            dismiss(animated: true, completion: nil)
+            //navigationController?.popViewController(animated: true)
+            //self.dismiss(animated: true, completion: nil)
             //removeFromParentViewController()
             
             print(newItem)

@@ -173,7 +173,7 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-    
+        print("the view will disapear function is being called for some reason")
         
       FindCompletedTasks()
         
@@ -185,9 +185,12 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
         print("these are how many tasks are complete \( numberComplete)")
        // self.PercentComplete = ((Int (self.numberComplete)) / (Int (numberOfItems)) * 100)
         //print(PercentComplete)
-        let test = Double(self.numberComplete) / Double(numberOfItems)
-        let formatedNumber = round(test)
-        self.PercentComplete = Int(formatedNumber * 100)
+        let test = (Double(self.numberComplete) / Double(numberOfItems)) * 100
+        print("this is the test var \(test)")
+        let formatedNumber = Int(test.rounded())
+        print("this is the formated number \(formatedNumber)")
+        
+        self.PercentComplete = Int(formatedNumber)
         print(PercentComplete)
         
         //creates an activity maker to tell users that a save is in process

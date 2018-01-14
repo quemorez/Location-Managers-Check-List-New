@@ -8,4 +8,7 @@ target 'Location Managers Check List New' do
     pod 'Parse'
     pod 'UICircularProgressRing'
     pod 'IQKeyboardManagerSwift'
+
 end
+
+

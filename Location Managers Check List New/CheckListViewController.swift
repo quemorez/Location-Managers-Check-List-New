@@ -262,7 +262,7 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
         }else if section == 2 {
             return "VENDOR SECTION"
         }else {
-            return "OTHER SEECTION"
+            return "OTHER SECTION"
         }
     }
     

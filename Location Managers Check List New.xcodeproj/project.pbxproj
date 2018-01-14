@@ -28,8 +28,34 @@
 		8C504DBC1F2AEBBF004ECC2B /* VendorOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DBB1F2AEBBF004ECC2B /* VendorOrdersViewController.swift */; };
 		8C504DBE1F2D985C004ECC2B /* chatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DBD1F2D985C004ECC2B /* chatViewController.swift */; };
 		8C504DC01F2D9D40004ECC2B /* chatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DBF1F2D9D40004ECC2B /* chatTableViewCell.swift */; };
+		8C7A5428200BC84100F3A1DC /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A5427200BC84100F3A1DC /* NotificationService.swift */; };
+		8C7A542C200BC84100F3A1DC /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C7A5425200BC84100F3A1DC /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8CA95E871F2ECD8E006A2638 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA95E861F2ECD8E006A2638 /* LocationTableViewCell.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8C7A542A200BC84100F3A1DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C01083E1F283E5100E3D97F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C7A5424200BC84100F3A1DC;
+			remoteInfo = OneSignalNotificationServiceExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8C7A5430200BC84100F3A1DC /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8C7A542C200BC84100F3A1DC /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		134AE6EC090C368F4CADDB62 /* Pods-Location Managers Check List New.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Location Managers Check List New.release.xcconfig"; path = "Pods/Target Support Files/Pods-Location Managers Check List New/Pods-Location Managers Check List New.release.xcconfig"; sourceTree = "<group>"; };
@@ -56,6 +82,10 @@
 		8C504DBB1F2AEBBF004ECC2B /* VendorOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorOrdersViewController.swift; sourceTree = "<group>"; };
 		8C504DBD1F2D985C004ECC2B /* chatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatViewController.swift; sourceTree = "<group>"; };
 		8C504DBF1F2D9D40004ECC2B /* chatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatTableViewCell.swift; sourceTree = "<group>"; };
+		8C7A54202007BBE600F3A1DC /* Location Managers Check List New.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Location Managers Check List New.entitlements"; sourceTree = "<group>"; };
+		8C7A5425200BC84100F3A1DC /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C7A5427200BC84100F3A1DC /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		8C7A5429200BC84100F3A1DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CA95E861F2ECD8E006A2638 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		A57A6E1938E6587899EC3DA3 /* Pods_Location_Managers_Check_List_New.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Location_Managers_Check_List_New.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -67,6 +97,13 @@
 			files = (
 				8C504DA21F28EA20004ECC2B /* QuartzCore.framework in Frameworks */,
 				5977FD7557B73CDA949826C1 /* Pods_Location_Managers_Check_List_New.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C7A5422200BC84100F3A1DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				8C0108481F283E5100E3D97F /* Location Managers Check List New */,
+				8C7A5426200BC84100F3A1DC /* OneSignalNotificationServiceExtension */,
 				8C0108471F283E5100E3D97F /* Products */,
 				1E097C364206EBB3DE9D4682 /* Pods */,
 				94BCBF60EF972E88FF74E705 /* Frameworks */,
@@ -96,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				8C0108461F283E5100E3D97F /* Location Managers Check List New.app */,
+				8C7A5425200BC84100F3A1DC /* OneSignalNotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,6 +142,7 @@
 		8C0108481F283E5100E3D97F /* Location Managers Check List New */ = {
 			isa = PBXGroup;
 			children = (
+				8C7A54202007BBE600F3A1DC /* Location Managers Check List New.entitlements */,
 				8C504DAD1F290889004ECC2B /* CheckListHelper.swift */,
 				8C504DB51F295244004ECC2B /* CheckListTableViewCell.swift */,
 				8C0108491F283E5100E3D97F /* AppDelegate.swift */,
@@ -128,6 +168,15 @@
 			path = "Location Managers Check List New";
 			sourceTree = "<group>";
 		};
+		8C7A5426200BC84100F3A1DC /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				8C7A5427200BC84100F3A1DC /* NotificationService.swift */,
+				8C7A5429200BC84100F3A1DC /* Info.plist */,
+			);
+			path = OneSignalNotificationServiceExtension;
+			sourceTree = "<group>";
+		};
 		94BCBF60EF972E88FF74E705 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,15 +199,34 @@
 				8C0108441F283E5100E3D97F /* Resources */,
 				9F98F8F3A132CD9F13AF2777 /* [CP] Embed Pods Frameworks */,
 				43560192144ADD3424BA462F /* [CP] Copy Pods Resources */,
+				8C7A5430200BC84100F3A1DC /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8C7A542B200BC84100F3A1DC /* PBXTargetDependency */,
 			);
 			name = "Location Managers Check List New";
 			productName = "Location Managers Check List New";
 			productReference = 8C0108461F283E5100E3D97F /* Location Managers Check List New.app */;
 			productType = "com.apple.product-type.application";
+		};
+		8C7A5424200BC84100F3A1DC /* OneSignalNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C7A542D200BC84100F3A1DC /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
+			buildPhases = (
+				8C7A5421200BC84100F3A1DC /* Sources */,
+				8C7A5422200BC84100F3A1DC /* Frameworks */,
+				8C7A5423200BC84100F3A1DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OneSignalNotificationServiceExtension;
+			productName = OneSignalNotificationServiceExtension;
+			productReference = 8C7A5425200BC84100F3A1DC /* OneSignalNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -166,12 +234,27 @@
 		8C01083E1F283E5100E3D97F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Zachary Quemore";
 				TargetAttributes = {
 					8C0108451F283E5100E3D97F = {
 						CreatedOnToolsVersion = 9.0;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					8C7A5424200BC84100F3A1DC = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -189,6 +272,7 @@
 			projectRoot = "";
 			targets = (
 				8C0108451F283E5100E3D97F /* Location Managers Check List New */,
+				8C7A5424200BC84100F3A1DC /* OneSignalNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -203,6 +287,13 @@
 				8C0108541F283E5100E3D97F /* LaunchScreen.storyboard in Resources */,
 				8C0108511F283E5100E3D97F /* Assets.xcassets in Resources */,
 				8C01084F1F283E5100E3D97F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C7A5423200BC84100F3A1DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +382,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C7A5421200BC84100F3A1DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C7A5428200BC84100F3A1DC /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8C7A542B200BC84100F3A1DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C7A5424200BC84100F3A1DC /* OneSignalNotificationServiceExtension */;
+			targetProxy = 8C7A542A200BC84100F3A1DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8C01084D1F283E5100E3D97F /* Main.storyboard */ = {
@@ -424,7 +531,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2FCD61DEA11C1AA243750CFF /* Pods-Location Managers Check List New.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Location Managers Check List New/Location Managers Check List New.entitlements";
 				DEVELOPMENT_TEAM = V63MCVZ6NB;
 				INFOPLIST_FILE = "Location Managers Check List New/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -440,13 +549,47 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 134AE6EC090C368F4CADDB62 /* Pods-Location Managers Check List New.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Location Managers Check List New/Location Managers Check List New.entitlements";
 				DEVELOPMENT_TEAM = V63MCVZ6NB;
 				INFOPLIST_FILE = "Location Managers Check List New/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ZQ.Location-Managers-Check-List-New";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8C7A542E200BC84100F3A1DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V63MCVZ6NB;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ZQ.Location-Managers-Check-List-New.OneSignalNotificationServiceExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8C7A542F200BC84100F3A1DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V63MCVZ6NB;
+				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "ZQ.Location-Managers-Check-List-New.OneSignalNotificationServiceExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -469,6 +612,15 @@
 			buildConfigurations = (
 				8C0108591F283E5100E3D97F /* Debug */,
 				8C01085A1F283E5100E3D97F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C7A542D200BC84100F3A1DC /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C7A542E200BC84100F3A1DC /* Debug */,
+				8C7A542F200BC84100F3A1DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

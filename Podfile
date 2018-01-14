@@ -11,4 +11,6 @@ target 'Location Managers Check List New' do
 
 end
 
-
+target 'OneSignalNotificationServiceExtension' do
+pod 'OneSignal', '>= 2.5.2', '< 3.0'
+end

@@ -8,6 +8,8 @@
 
 import UIKit
 import Parse
+import OneSignal
+
 
 class ProjectViewController: UIViewController,UINavigationControllerDelegate,UITableViewDelegate,UITableViewDataSource {
     
@@ -16,6 +18,7 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
     var SelectedProject = String()
     var ProjectsTitles = [String]()
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    var oneSignalIDSet = Bool
     
     @IBOutlet var projectTableView: UITableView!
     //Actions
@@ -40,6 +43,8 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
     //UI Life Cycle
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        
         self.projectTableView.dataSource = self
         self.projectTableView.delegate = self
         
@@ -116,6 +121,24 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
         super.viewDidLoad()
         definesPresentationContext = true
         self.projectTableView.reloadData()
+        
+        //MARK: - Saving OneSignal PlayerID
+        
+        let status : OSPermissionSubscriptionState = OneSignal.getPermissionSubscriptionState()
+        let playerID = status.subscriptionStatus.userId
+        
+        if playerID != nil && oneSignalIDSet != true {
+            let user = PFUser.current()!.username!
+            let userEmail = PFUser.current()!.email!
+            let object = PFObject(className: "OneSignalPlayerID")
+            object["username"] = user
+            object["Email"] = userEmail
+            object["playerID"] = playerID
+            object.saveEventually()
+            oneSignalIDSet = true
+            
+        }
+        
         
         // Do any additional setup after loading the view.
     }

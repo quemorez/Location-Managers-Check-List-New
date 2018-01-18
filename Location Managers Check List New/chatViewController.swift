@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import OneSignal
 
 class chatViewController: UIViewController,UINavigationControllerDelegate,UITableViewDelegate,UITableViewDataSource {
   
@@ -16,6 +17,7 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
     var CurrentLocation = ""
     var CurrentProject = ""
     var CurrentLocationID = ""
+    var teamMembers = [String]()
     var ParsedChats = [PFObject]()
     var ChatSender = [String]()
     var ChatMessage = [String]()
@@ -29,6 +31,7 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
             self.displayAlert("message is blank", error: "Please write something first")
             messageTextField.text = ""
         }else {
+            findTeam()
             sendMessage()
             messageTextField.text = ""
             LoadMessages()
@@ -40,8 +43,9 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
         self.chatTableView.dataSource = self
         self.chatTableView.delegate = self
         
-        
+        print(CurrentProject)
         LoadMessages()
+        
         
         
        
@@ -67,13 +71,7 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
     
     func sendMessage() {
         //creates an activity maker to tell users that a save is in process
-        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
+        
         
         let Chat = PFObject(className: "Chat")
             Chat["sender"] = PFUser.current()!.username
@@ -82,17 +80,15 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
             Chat.saveInBackground(block: { (success, error) in
                     if success == true {
                         
-                        //stops Activity Indicator
-                        self.activityIndicator.stopAnimating()
-                        UIApplication.shared.endIgnoringInteractionEvents()
+                        
                         self.LoadMessages()
                         //self.chatTableView.reloadData()
+                        self.SendNotification()
+                        
                         
                         
                     } else {
-                        //stops Activity Indicator
-                        self.activityIndicator.stopAnimating()
-                        UIApplication.shared.endIgnoringInteractionEvents()
+                        
                         
                         self.displayAlert("Could not send message", error: "Please check conection and try again")
                         
@@ -110,6 +106,15 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
         // Mark: -  Query
         ChatMessage.removeAll()
         ChatSender.removeAll()
+        
+        //creates an activity maker to tell users that a save is in process
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
         
         let query = PFQuery(className: "Chat")
         query.whereKey("LocationID", equalTo: CurrentLocationID)
@@ -133,7 +138,7 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
                 self.ParsedChats.removeAll(keepingCapacity: true)
                 for object in objects {
                     self.ParsedChats.append(object)
-                    print(object.createdAt! as NSDate)
+                   // print(object.createdAt! as NSDate)
                     
                     let sender: String = object["sender"] as! String
                     let message: String = object["Message"] as! String
@@ -156,6 +161,75 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
         }
         }
     
+    func findTeam() {
+        print("Find team function is running")
+        // Mark: -  Query
+        teamMembers.removeAll()
+        
+        let query = PFQuery(className: "Project")
+        query.whereKey("Title", equalTo: CurrentProject)
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                
+                print("There is a error while searching please check internet connection")
+                
+                self.displayAlert("Team Members not found", error: "Please check internet conection")
+                print(error)
+                
+            }else if let objects = objects {
+                
+
+                for object in objects {
+                    print(object)
+                    let team = object["TeamMembers"]
+                    self.teamMembers = team as! [String]
+                    print(self.teamMembers)
+                }
+            }
+        }
+    }
+    
+    
+    func SendNotification() {
+        var TeamMemberIDs = [String]()
+        
+        for teamMember in teamMembers{
+            print(teamMember)
+            
+            // Mark: -  Query
+            
+            
+            let query = PFQuery(className: "OneSignalPlayerID")
+            query.whereKey("Email", equalTo: teamMember)
+            
+            query.findObjectsInBackground { (objects, error) in
+                if error != nil{
+                    
+                    print("There is a error while searching please check internet connection")
+                    
+                    self.displayAlert("Team Members not found", error: "Please check internet conection")
+                    print(error)
+                    
+                }else if let objects = objects {
+                    
+                    
+                    for object in objects {
+                        print(object)
+                        let memberID = object["playerID"]
+                        TeamMemberIDs.append(memberID as! String)
+                        print(TeamMemberIDs)
+                    }
+                }
+            }
+            
+        }
+        
+        self.teamMembers.removeAll(keepingCapacity: false)
+        // Sends PushNotification when someone sends a chat
+        OneSignal.postNotification(["contents": ["en": "\(PFUser.current()!.username!) is chatting about \(CurrentLocation)"], "include_player_ids": [TeamMemberIDs]])
+        
+    }
 
     //Helper Methiods
     //this function creats and alert that you can display errors with

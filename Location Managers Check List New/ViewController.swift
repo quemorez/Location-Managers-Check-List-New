@@ -279,6 +279,11 @@ class ViewController: UIViewController {
             
             
             
+        } else if (segue.identifier == "segueToProjectVC") {
+            let projectView = segue.destination as! ProjectViewController
+            
+           // projectView.oneSignalIDSet = true
+            
         }
     }
 

@@ -197,7 +197,7 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
                     
                     self.LocationsNames.append(Name)
                     self.LocationsProgress.append(Progress)
-                    print("location progress is \(self.LocationsProgress)")
+                   // print("location progress is \(self.LocationsProgress)")
                     self.LocationsTableView.reloadData()
                     
                     
@@ -230,16 +230,16 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
         
         //cell.backgroundColor = UIColor.darkGray
         LocationCell.LocationNameLabel.text = self.LocationsNames[indexPath.row]
-        print(self.LocationsProgress[indexPath.row])
+       // print(self.LocationsProgress[indexPath.row])
         LocationCell.PregressBar.progress = Float( Double (self.LocationsProgress[indexPath.row]) / Double (100))
-        print(Float( Double (self.LocationsProgress[indexPath.row]) / Double (100)))
+        //print(Float( Double (self.LocationsProgress[indexPath.row]) / Double (100)))
         
         
         return LocationCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        //print(indexPath.row)
         self.SelectedLocation = self.LocationsNames[indexPath.row]
         self.performSegue(withIdentifier: "CheckListSeque", sender: self)
     }
@@ -288,7 +288,7 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
                 }
             }
             
-            print(index.row)
+          //  print(index.row)
             self.LocationsTableView.reloadData()
         }
         delete.backgroundColor = .red
@@ -318,12 +318,12 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CheckListSeque"{
-            print("seque fired again")
+           // print("seque fired again")
             let CheckListView = segue.destination as! CheckListViewController
             CheckListView.CurrentLocation = self.SelectedLocation
             CheckListView.CurrentProject = self.currentProject
         } else if segue.identifier == "settingsSegue"{
-            print("settings fired")
+            //print("settings fired")
             let addProjectView = segue.destination as! AddProjectViewController
             addProjectView.CurrentLocation = self.SelectedLocation
             addProjectView.CurrentProject = self.currentProject

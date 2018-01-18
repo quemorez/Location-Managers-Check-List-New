@@ -589,6 +589,7 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
             let ChatView = segue.destination as! chatViewController
             ChatView.CurrentLocation = self.CurrentLocation
             ChatView.CurrentLocationID = self.CurrentLocationID
+            ChatView.CurrentProject = self.CurrentProject
             
         }
         

@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import IQKeyboardManagerSwift
+import OneSignal
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // Parse setup
         let configuration = ParseClientConfiguration {
             $0.applicationId = "86a6e3ca2406975a7dbfd87fdb0e780657375c5b"
             $0.clientKey = "734d215c6eab358849480458dcd2fdca797f9fed"
@@ -25,8 +27,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Parse.initialize(with: configuration)
         
+        
+        // IQKeyboard set up
         IQKeyboardManager.sharedManager().enable = true
         
+        //OneSignal push notification setup
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+        
+        // Replace 'YOUR_APP_ID' with your OneSignal App ID.
+        OneSignal.initWithLaunchOptions(launchOptions,
+                                        appId: "36374bf7-8c38-44d3-ab2d-3000f1d34ef3",
+                                        handleNotificationAction: nil,
+                                        settings: onesignalInitSettings)
+        
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+        
+        // Recommend moving the below line to prompt for push after informing the user about
+        //   how your app will use them.
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+            print("User accepted notifications: \(accepted)")
+        })
         
         
         return true

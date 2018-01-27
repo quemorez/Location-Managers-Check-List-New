@@ -18,7 +18,7 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
     var SelectedProject = String()
     var ProjectsTitles = [String]()
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-    var oneSignalIDSet = Bool
+    var oneSignalIDSet = true
     
     @IBOutlet var projectTableView: UITableView!
     //Actions

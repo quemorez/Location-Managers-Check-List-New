@@ -13,7 +13,7 @@ import OneSignal
 class chatViewController: UIViewController,UINavigationControllerDelegate,UITableViewDelegate,UITableViewDataSource {
   
     
-    
+    var TeamMemberIDs = [String]()
     var CurrentLocation = ""
     var CurrentProject = ""
     var CurrentLocationID = ""
@@ -33,8 +33,10 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
         }else {
             findTeam()
             sendMessage()
+            
             messageTextField.text = ""
             LoadMessages()
+            
         }
         
     }
@@ -83,7 +85,7 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
                         
                         self.LoadMessages()
                         //self.chatTableView.reloadData()
-                        self.SendNotification()
+                        
                         
                         
                         
@@ -185,6 +187,8 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
                     let team = object["TeamMembers"]
                     self.teamMembers = team as! [String]
                     print(self.teamMembers)
+                    
+                    self.SendNotification()
                 }
             }
         }
@@ -192,10 +196,11 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
     
     
     func SendNotification() {
-        var TeamMemberIDs = [String]()
+        print("send notification function called")
+        //var TeamMemberIDs = [String]()
         
-        for teamMember in teamMembers{
-            print(teamMember)
+        for teamMember in teamMembers {
+            print("list of \(teamMember)")
             
             // Mark: -  Query
             
@@ -217,18 +222,26 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
                     for object in objects {
                         print(object)
                         let memberID = object["playerID"]
-                        TeamMemberIDs.append(memberID as! String)
-                        print(TeamMemberIDs)
+                        if memberID != nil {
+                            self.TeamMemberIDs.append(memberID as! String)
+                            print("the team member ID's ar \(self.TeamMemberIDs)")
+                        }
+                        
+                        print("this is how the team members id's will look \(self.TeamMemberIDs)")
+                                self.teamMembers.removeAll(keepingCapacity: false)
+                                // Sends PushNotification when someone sends a chat
+                        OneSignal.postNotification(["contents": ["en": "\(PFUser.current()!.username!) is chatting about \(self.CurrentLocation)"], "include_player_ids": ["\(String(describing: self.TeamMemberIDs.first))"]])
+                                // ["\(TeamMemberIDs)"]
                     }
                 }
             }
             
         }
-        
-        self.teamMembers.removeAll(keepingCapacity: false)
-        // Sends PushNotification when someone sends a chat
-        OneSignal.postNotification(["contents": ["en": "\(PFUser.current()!.username!) is chatting about \(CurrentLocation)"], "include_player_ids": [TeamMemberIDs]])
-        
+//        print("this is how the team members id's will look \(self.TeamMemberIDs)")
+//        self.teamMembers.removeAll(keepingCapacity: false)
+//        // Sends PushNotification when someone sends a chat
+//        OneSignal.postNotification(["contents": ["en": "\(PFUser.current()!.username!) is chatting about \(CurrentLocation)"], "include_player_ids": ["\(self.TeamMemberIDs)"]])
+//        // ["\(TeamMemberIDs)"]
     }
 
     //Helper Methiods

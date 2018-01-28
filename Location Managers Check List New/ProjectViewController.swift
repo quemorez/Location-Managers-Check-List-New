@@ -18,7 +18,7 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
     var SelectedProject = String()
     var ProjectsTitles = [String]()
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-    var oneSignalIDSet = true
+    var oneSignalIDSet = false
     
     @IBOutlet var projectTableView: UITableView!
     //Actions
@@ -43,6 +43,7 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
     //UI Life Cycle
     
     override func viewDidAppear(_ animated: Bool) {
+        
         
         
         self.projectTableView.dataSource = self
@@ -126,18 +127,47 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
         
         let status : OSPermissionSubscriptionState = OneSignal.getPermissionSubscriptionState()
         let playerID = status.subscriptionStatus.userId
+        print("The player ID is \(playerID)")
         
-        if playerID != nil && oneSignalIDSet != true {
-            let user = PFUser.current()!.username!
-            let userEmail = PFUser.current()!.email!
-            let object = PFObject(className: "OneSignalPlayerID")
-            object["username"] = user
-            object["Email"] = userEmail
-            object["playerID"] = playerID
-            object.saveEventually()
-            oneSignalIDSet = true
-            
+        
+        let query = PFQuery(className: "OneSignalPlayerID")
+        query.whereKey("playerID", contains: playerID)
+        //query?.limit = 10
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error != nil{
+                
+                print("There is a error while searching please check internet connection")
+                
+                self.displayAlert("Location not found", error: "Please check internet conection")
+                
+                
+                
+                print(error)
+                
+            }else if let objects = objects {
+                if objects.count == 0 {
+                        let user = PFUser.current()!.username!
+                        let userEmail = PFUser.current()!.email!
+                        let object = PFObject(className: "OneSignalPlayerID")
+                        object["username"] = user
+                        object["Email"] = userEmail
+                        object["playerID"] = playerID
+                        object.saveEventually()
+                        //oneSignalIDSet = true
+                    
+                }
+         
+            }
         }
+        
+        
+        
+        
+        
+        
+        
+       
         
         
         // Do any additional setup after loading the view.

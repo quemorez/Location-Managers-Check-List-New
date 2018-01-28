@@ -190,7 +190,8 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
                     let team = object["TeamMembers"]
                     self.teamMembers = team as! [String]
                     print(self.teamMembers)
-                    
+                    let int = self.teamMembers.index(of: (PFUser.current()?.email)!)
+                    self.teamMembers.remove(at: int!)
                     self.SendNotification()
                 }
             }

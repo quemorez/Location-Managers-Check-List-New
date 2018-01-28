@@ -1,9 +1,11 @@
 PODS:
-  - Bolts/Tasks (1.8.4)
-  - IQKeyboardManagerSwift (5.0.6)
-  - OneSignal (2.5.7)
-  - Parse (1.15.0):
-    - Bolts/Tasks (~> 1.8)
+  - Bolts/Tasks (1.9.0)
+  - IQKeyboardManagerSwift (5.0.7)
+  - OneSignal (2.6.2)
+  - Parse (1.16.0):
+    - Parse/Core (= 1.16.0)
+  - Parse/Core (1.16.0):
+    - Bolts/Tasks (~> 1.9)
   - UICircularProgressRing (1.7.5)
 
 DEPENDENCIES:
@@ -13,10 +15,10 @@ DEPENDENCIES:
   - UICircularProgressRing
 
 SPEC CHECKSUMS:
-  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  IQKeyboardManagerSwift: 02bfbb0dff71c66d0ab77d80d25dfce0c3717735
-  OneSignal: 5be2eb3394e654b7467a190fe4d58147fc46bb78
-  Parse: c0519f8fbf57bd0334f75cd22ac032d86ee55464
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  IQKeyboardManagerSwift: 30fb3a61de1af53a95e02b80fb54ed0a19d5ede5
+  OneSignal: 95127bce89b9e495079e7205e3d47c88590b5750
+  Parse: 5b36dc2c2f0a2fd82a257ae018bc3d68cf2c24e7
   UICircularProgressRing: b35e45dc82aac8009d038ef4d2e19718675df2bd
 
 PODFILE CHECKSUM: 1c145c0861edf7eb025eab5cd56558f81a179d0a

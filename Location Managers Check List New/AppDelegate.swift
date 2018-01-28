@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //OneSignal push notification setup
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
-        
+        //OneSignal.setLogLevel(.LL_DEBUG, visualLevel: .LL_DEBUG)
         // Replace 'YOUR_APP_ID' with your OneSignal App ID.
         OneSignal.initWithLaunchOptions(launchOptions,
                                         appId: "36374bf7-8c38-44d3-ab2d-3000f1d34ef3",

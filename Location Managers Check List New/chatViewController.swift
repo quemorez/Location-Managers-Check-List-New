@@ -124,6 +124,9 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
         
         query.findObjectsInBackground { (objects, error) in
             if error != nil{
+                //stops Activity Indicator
+                self.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
                 
                 print("There is a error while searching please check internet connection")
                 
@@ -230,13 +233,19 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
                         print("this is how the team members id's will look \(self.TeamMemberIDs)")
                                 self.teamMembers.removeAll(keepingCapacity: false)
                                 // Sends PushNotification when someone sends a chat
-                        OneSignal.postNotification(["contents": ["en": "\(PFUser.current()!.username!) is chatting about \(self.CurrentLocation)"], "include_player_ids": ["\(String(describing: self.TeamMemberIDs.first))"]])
+                        OneSignal.postNotification(["contents": ["en": "Your team member \(PFUser.current()!.username!) is chatting about the \(self.CurrentLocation) Location"], "include_player_ids": self.TeamMemberIDs])
+                        self.TeamMemberIDs.removeAll(keepingCapacity: false)
                                 // ["\(TeamMemberIDs)"]
                     }
                 }
             }
             
         }
+        
+        //stops Activity Indicator
+        self.activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
+        
 //        print("this is how the team members id's will look \(self.TeamMemberIDs)")
 //        self.teamMembers.removeAll(keepingCapacity: false)
 //        // Sends PushNotification when someone sends a chat

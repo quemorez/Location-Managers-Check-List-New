@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import UserNotifications
 
 class LocationInformationViewController: UIViewController {
     var basecamp = true
@@ -18,6 +19,7 @@ class LocationInformationViewController: UIViewController {
     var BasecampLocation = PFGeoPoint()
     var CrewParkingLocation = PFGeoPoint()
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    var ShootDate = ""
     
     
     
@@ -34,7 +36,14 @@ class LocationInformationViewController: UIViewController {
     @IBOutlet var locationContactEmailTextfield: UITextField!
     
     
+    @IBOutlet var ShootDatePicker: UIDatePicker!
     
+    @IBAction func ShootDateSellected(_ sender: Any) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yy"
+        self.ShootDate = formatter.string(from: ShootDatePicker.date)
+        print(self.ShootDate)
+    }
     
     @IBOutlet var CateringAddressTextfield: UITextField!
     
@@ -193,6 +202,15 @@ class LocationInformationViewController: UIViewController {
                 self.locationContactNumberTextfield.text = Location["LocationContactNumber"] as? String
                 self.locationContactEmailTextfield.text = Location["LocationContactEmail"] as? String
                 
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MM/dd/yy"
+                if (Location["ShootDate"] as? String) != nil {
+                let date = dateFormatter.date(from: (Location["ShootDate"] as? String)!)
+                    print(date)
+                   self.ShootDatePicker.date = (date)!
+                }
+                
+                
                 self.CateringAddressTextfield.text = Location["CateringAddress"] as? String
                 self.cateringContactNameTextfield.text = Location["CateringContact"] as? String
                 self.cateringContactNumberTextfield.text = Location["CateringContactNumber"] as? String
@@ -265,6 +283,8 @@ class LocationInformationViewController: UIViewController {
                 Location["LocationContact"] = self.LocationContactTextField.text
                 Location["LocationContactNumber"] = self.locationContactNumberTextfield.text
                 Location["LocationContactEmail"] = self.locationContactEmailTextfield.text
+                Location["ShootDate"] = self.ShootDate
+                
                 
                 Location["CateringAddress"] = self.CateringAddressTextfield.text
                 Location["CateringContact"] = self.cateringContactNameTextfield.text
@@ -458,6 +478,23 @@ class LocationInformationViewController: UIViewController {
         
     }
     
+    
+    func CreateNotifications() {
+        let content = UNMutableNotificationContent()
+        content.title = NSString.localizedUserNotificationString(forKey: "Testing Local Notifications", arguments: nil)
+        content.body = NSString.localizedUserNotificationString(forKey: "We are testing local notifications thais would have something about what your location is shooting", arguments: nil)
+        content.sound = UNNotificationSound.default()
+        let comps = Calendar.current.dateComponents(in: .current, from: ShootDatePicker.date)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: comps, repeats: false)
+        let request = UNNotificationRequest(identifier: "Shoot Date Notification", content: content, trigger: trigger)
+        let center = UNUserNotificationCenter.current()
+        center.add(request) { (error: Error?) in
+            if let theError = error {
+                print(theError.localizedDescription)
+            }
+        }
+        
+    }
     
     //Helper Methiods
     //this function creats and alert that you can display errors with

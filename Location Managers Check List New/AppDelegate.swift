@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import IQKeyboardManagerSwift
 import OneSignal
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //Notifiaction SetUp
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            print("granted: \(granted)")
+        }
+        
+        
         // Parse setup
         let configuration = ParseClientConfiguration {
             $0.applicationId = "86a6e3ca2406975a7dbfd87fdb0e780657375c5b"
@@ -73,6 +81,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+
 
 
 }

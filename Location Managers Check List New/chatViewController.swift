@@ -12,7 +12,7 @@ import OneSignal
 
 class chatViewController: UIViewController,UINavigationControllerDelegate,UITableViewDelegate,UITableViewDataSource {
   
-    
+    var refreshControl: UIRefreshControl = UIRefreshControl()
     var TeamMemberIDs = [String]()
     var CurrentLocation = ""
     var CurrentProject = ""
@@ -48,9 +48,17 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
         print(CurrentProject)
         LoadMessages()
         
+        refreshControl.tintColor = UIColor.green
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching new messages", attributes: [NSAttributedStringKey.foregroundColor : refreshControl.tintColor ])
+        refreshControl.addTarget(self, action: #selector(chatViewController.LoadMessages), for: UIControlEvents.valueChanged)
         
-        
-       
+        if #available(iOS 10.0, *) {
+            print("new version of refresh is running")
+            chatTableView.refreshControl = refreshControl
+        }else {
+            print("old version of refresh is running")
+            chatTableView.addSubview(refreshControl)
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -104,7 +112,7 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
     }
     
     
-    func LoadMessages() {
+    @objc func LoadMessages() {
         // Mark: -  Query
         ChatMessage.removeAll()
         ChatSender.removeAll()
@@ -160,7 +168,7 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
                     
                     //print(self.ProjectsTitles)
                     self.chatTableView.reloadData()
-                    
+                    self.refreshControl.endRefreshing()
                 }
             }
         }
@@ -234,7 +242,7 @@ class chatViewController: UIViewController,UINavigationControllerDelegate,UITabl
                         print("this is how the team members id's will look \(self.TeamMemberIDs)")
                                 self.teamMembers.removeAll(keepingCapacity: false)
                                 // Sends PushNotification when someone sends a chat
-                        OneSignal.postNotification(["contents": ["en": "Your team member \(PFUser.current()!.username!) is chatting about the \(self.CurrentLocation) Location"], "include_player_ids": self.TeamMemberIDs])
+                        OneSignal.postNotification(["contents": ["en": "Your team member \(PFUser.current()!.username!) is chatting about the \(self.CurrentLocation) Location"], "include_player_ids": self.TeamMemberIDs, "ios_badgeType" : "Increase", "ios_badgeCount" : "1"])
                         self.TeamMemberIDs.removeAll(keepingCapacity: false)
                                 // ["\(TeamMemberIDs)"]
                     }

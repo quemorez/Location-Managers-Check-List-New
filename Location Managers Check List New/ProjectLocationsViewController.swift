@@ -76,6 +76,7 @@ class ProjectLocationsViewController: UIViewController, UITableViewDelegate,UITa
             Location["NumberOfItems"] = 0
             Location["NumberComplete"] = 0
             Location["PercentComplete"] = 0
+            Location["fiftyPercentNotif"] = false
             Location.saveInBackground(block: { (success, error) in
                 if success == true {
                     

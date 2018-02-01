@@ -173,13 +173,19 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
                     
                     //Implement progress checking
                     self.CurrentProgress = object ["PercentComplete"] as! Int
+                    self.fiftyNotifCreated = object ["fiftyPercentNotif"] as! Bool
+                    
                     print("\(self.CurrentProgress) is what the value of percent complete is")
                     if self.CurrentProgress >= 50 {
                         if self.fiftyNotifCreated == false {
                             print("50% of the checklist is finished")
+                            print(self.fiftyNotifCreated)
                             self.fiftyPercentNotification(percentComplete: self.CurrentProgress)
                             self.fiftyNotifCreated = true
                         }
+                    }
+                    if self.CurrentProgress >= 100 {
+                        self.HundredPercentNotification(percentComplete: self.CurrentProgress)
                     }
                     
                     self.checkListTableView.reloadData()
@@ -244,6 +250,7 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
                 Location["NumberOfItems"] = numberOfItems
                 Location["NumberComplete"] = self.numberComplete
                 Location["PercentComplete"] = self.PercentComplete
+                Location["fiftyPercentNotif"] = self.fiftyNotifCreated
                 Location.saveInBackground(block: { (success, error) in
                     if success == true {
                         
@@ -584,18 +591,26 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func fiftyPercentNotification(percentComplete: Int) {
+       
+        guard let imageURL = Bundle.main.url(forResource: "leo", withExtension: "gif") else {
+            return
+        }
+    
+         let attachment = try! UNNotificationAttachment(identifier: "leo", url: imageURL, options: .none)
+        
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         
         let content = UNMutableNotificationContent()
-        content.title = "Congradulations!"
+        content.title = "Congratulations!"
+        content.body = "You have completed half of your check list! keep up the good work."
+        content.attachments = [attachment]
         
-        content.body = " You have completed half of your check list keep up the good work it will pay off on the shoot day"
         let request = UNNotificationRequest(identifier: "fiftyPercentNotif", content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request) { (error) in
             if error != nil {
-                print(error)
+                print(error as Any)
                 
             }else {
                 print("success")
@@ -603,9 +618,39 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             return
         }
+    }
+    
+    
+    func HundredPercentNotification(percentComplete: Int) {
+        
+        print("100% notification fires")
+        
+        guard let imageURL = Bundle.main.url(forResource: "elfe", withExtension: "gif") else {
+            return
+        }
+        
+        let attachment = try! UNNotificationAttachment(identifier: "elfe", url: imageURL, options: .none)
         
         
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         
+        let content = UNMutableNotificationContent()
+        content.title = "Congratulations!"
+        content.body = "You have completed your checklist! Good luck on your shoot day."
+        content.attachments = [attachment]
+        
+        let request = UNNotificationRequest(identifier: "hundredPercentNotif", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if error != nil {
+                print(error as Any)
+                
+            }else {
+                print("success")
+                
+            }
+            return
+        }
     }
     
     // MARK: - Navigation

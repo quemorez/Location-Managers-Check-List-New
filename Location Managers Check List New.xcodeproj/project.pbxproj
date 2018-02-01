@@ -30,6 +30,10 @@
 		8C504DC01F2D9D40004ECC2B /* chatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C504DBF1F2D9D40004ECC2B /* chatTableViewCell.swift */; };
 		8C7A5428200BC84100F3A1DC /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A5427200BC84100F3A1DC /* NotificationService.swift */; };
 		8C7A542C200BC84100F3A1DC /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8C7A5425200BC84100F3A1DC /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8CA04B3D2022A8DC00B1C12B /* shia.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8CA04B3C2022A8DB00B1C12B /* shia.gif */; };
+		8CA04B3F2022A8F700B1C12B /* leo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8CA04B3E2022A8F700B1C12B /* leo.gif */; };
+		8CA04B422022B73A00B1C12B /* elfe.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8CA04B402022B73900B1C12B /* elfe.gif */; };
+		8CA04B432022B73A00B1C12B /* joker.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8CA04B412022B73A00B1C12B /* joker.mp4 */; };
 		8CA95E871F2ECD8E006A2638 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA95E861F2ECD8E006A2638 /* LocationTableViewCell.swift */; };
 		F5684AAF8FB26808C82C216A /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7189EE65999E9A6F052DCE41 /* Pods_OneSignalNotificationServiceExtension.framework */; };
 /* End PBXBuildFile section */
@@ -90,6 +94,10 @@
 		8C7A5427200BC84100F3A1DC /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		8C7A5429200BC84100F3A1DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C7BE913201062DA00B690F1 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
+		8CA04B3C2022A8DB00B1C12B /* shia.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = shia.gif; sourceTree = "<group>"; };
+		8CA04B3E2022A8F700B1C12B /* leo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = leo.gif; sourceTree = "<group>"; };
+		8CA04B402022B73900B1C12B /* elfe.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = elfe.gif; sourceTree = "<group>"; };
+		8CA04B412022B73A00B1C12B /* joker.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = joker.mp4; sourceTree = "<group>"; };
 		8CA95E861F2ECD8E006A2638 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		A57A6E1938E6587899EC3DA3 /* Pods_Location_Managers_Check_List_New.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Location_Managers_Check_List_New.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95C91E7D6E8A7F07449304E /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -169,6 +177,10 @@
 				8C504DBF1F2D9D40004ECC2B /* chatTableViewCell.swift */,
 				8C0108501F283E5100E3D97F /* Assets.xcassets */,
 				8C0108521F283E5100E3D97F /* LaunchScreen.storyboard */,
+				8CA04B3C2022A8DB00B1C12B /* shia.gif */,
+				8CA04B3E2022A8F700B1C12B /* leo.gif */,
+				8CA04B402022B73900B1C12B /* elfe.gif */,
+				8CA04B412022B73A00B1C12B /* joker.mp4 */,
 				8C504DA01F28E9DA004ECC2B /* HoltwoodOneSC2.ttf */,
 				8C504D9F1F28E9DA004ECC2B /* OFL2.txt */,
 				8C0108551F283E5100E3D97F /* Info.plist */,
@@ -299,11 +311,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CA04B422022B73A00B1C12B /* elfe.gif in Resources */,
 				8C504DA51F28F49A004ECC2B /* HoltwoodOneSC2.ttf in Resources */,
+				8CA04B3D2022A8DC00B1C12B /* shia.gif in Resources */,
 				8C504DA61F28F49A004ECC2B /* OFL2.txt in Resources */,
 				8C0108541F283E5100E3D97F /* LaunchScreen.storyboard in Resources */,
 				8C0108511F283E5100E3D97F /* Assets.xcassets in Resources */,
+				8CA04B432022B73A00B1C12B /* joker.mp4 in Resources */,
 				8C01084F1F283E5100E3D97F /* Main.storyboard in Resources */,
+				8CA04B3F2022A8F700B1C12B /* leo.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

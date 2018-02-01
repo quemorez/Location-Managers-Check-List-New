@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import Foundation
+import UserNotifications
 
 
 
@@ -18,8 +19,10 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
     var CurrentLocation = ""
     var CurrentProject = ""
     var CurrentLocationID = ""
+    var CurrentProgress = 0
     var numberComplete = 0
     var PercentComplete = 0
+    var fiftyNotifCreated = false
     var newItem = [String: String]()
     var CheckedTasks = [String]()
     var canEdit = false
@@ -54,6 +57,14 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
+            if error != nil {
+                self.displayAlert("Notification was not permitted", error: "Please go into setting and turn on notifications")
+            } else {
+                print("successfully signed up for notifications")
+            }
+        }
+        
         //checkListTableView.setEditing(true, animated: true)
         super.viewDidLoad()
         
@@ -67,6 +78,7 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidAppear(_ animated: Bool) {
         //checkListTableView.reloadData()
+        
         
         
         // Var clean up
@@ -116,7 +128,7 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
                     self.parsedHoldingSectionCLItems = object ["HoldingSectionCLItems"] as! Dictionary
                     self.parsedVendorSectionCLItems = object ["VendorSectionCLItems"] as! Dictionary
                     self.parsedOtherSectionCLItems = object ["OtherSectionCLItems"] as! Dictionary
-                   // self.numberComplete = object ["NumberComplete"] as! Int
+                    // self.numberComplete = object ["NumberComplete"] as! Int
                     
                     // handle new checklist item
                     for (newKey,newValue) in self.newItem {
@@ -158,6 +170,18 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
                     self.parsedOtherSectionCLItemsKeys += stringArray4
                     
                     
+                    
+                    //Implement progress checking
+                    self.CurrentProgress = object ["PercentComplete"] as! Int
+                    print("\(self.CurrentProgress) is what the value of percent complete is")
+                    if self.CurrentProgress >= 50 {
+                        if self.fiftyNotifCreated == false {
+                            print("50% of the checklist is finished")
+                            self.fiftyPercentNotification(percentComplete: self.CurrentProgress)
+                            self.fiftyNotifCreated = true
+                        }
+                    }
+                    
                     self.checkListTableView.reloadData()
                     //stops Activity Indicator
                     self.activityIndicator.stopAnimating()
@@ -167,7 +191,7 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
         
- 
+        
         //self.checkListTableView.reloadData()
         
     }
@@ -175,7 +199,7 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewWillDisappear(_ animated: Bool) {
         print("the view will disapear function is being called for some reason")
         
-      FindCompletedTasks()
+        FindCompletedTasks()
         
         
         
@@ -183,7 +207,7 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         print("these are how many tasks  there are \( numberOfItems)")
         print("these are how many tasks are complete \( numberComplete)")
-       // self.PercentComplete = ((Int (self.numberComplete)) / (Int (numberOfItems)) * 100)
+        // self.PercentComplete = ((Int (self.numberComplete)) / (Int (numberOfItems)) * 100)
         //print(PercentComplete)
         let test = (Double(self.numberComplete) / Double(numberOfItems)) * 100
         print("this is the test var \(test)")
@@ -279,45 +303,45 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       // self.numberComplete = 0
+        // self.numberComplete = 0
         var checkListTask = ""
         var taskBoolValue = false
         
         if indexPath.section == 0 {
             if parsedLocationSectionCLItemsKeys.count >= 0 {
-            checkListTask = parsedLocationSectionCLItemsKeys.sorted()[indexPath.row]
-            taskBoolValue = parsedLocationSectionCLItems[checkListTask]!
-            if parsedLocationSectionCLItems[checkListTask]! == true{
-                //self.numberComplete = 1 + numberComplete
-                //print("this is incromenting \(numberComplete)")
+                checkListTask = parsedLocationSectionCLItemsKeys.sorted()[indexPath.row]
+                taskBoolValue = parsedLocationSectionCLItems[checkListTask]!
+                if parsedLocationSectionCLItems[checkListTask]! == true{
+                    //self.numberComplete = 1 + numberComplete
+                    //print("this is incromenting \(numberComplete)")
                 }
             }
         }else if indexPath.section == 1 {
             if parsedHoldingSectionCLItemsKeys.count >= 0 {
-            checkListTask = parsedHoldingSectionCLItemsKeys.sorted()[indexPath.row]
-            taskBoolValue = parsedHoldingSectionCLItems[checkListTask]!
-            if parsedHoldingSectionCLItems[checkListTask]! == true{
-                //self.numberComplete = 1 + numberComplete
-               // print("this is incromenting \(numberComplete)")
+                checkListTask = parsedHoldingSectionCLItemsKeys.sorted()[indexPath.row]
+                taskBoolValue = parsedHoldingSectionCLItems[checkListTask]!
+                if parsedHoldingSectionCLItems[checkListTask]! == true{
+                    //self.numberComplete = 1 + numberComplete
+                    // print("this is incromenting \(numberComplete)")
                 }
             }
         }else if indexPath.section == 2 {
             if parsedVendorSectionCLItemsKeys.count >= 0 {
-            checkListTask = parsedVendorSectionCLItemsKeys.sorted()[indexPath.row]
-            taskBoolValue = parsedVendorSectionCLItems[checkListTask]!
-            if parsedVendorSectionCLItems[checkListTask]! == true{
-               // self.numberComplete = 1 + numberComplete
-               // print("this is incromenting \(numberComplete)")
+                checkListTask = parsedVendorSectionCLItemsKeys.sorted()[indexPath.row]
+                taskBoolValue = parsedVendorSectionCLItems[checkListTask]!
+                if parsedVendorSectionCLItems[checkListTask]! == true{
+                    // self.numberComplete = 1 + numberComplete
+                    // print("this is incromenting \(numberComplete)")
                 }
             }
         }else if indexPath.section == 3 {
             if parsedOtherSectionCLItemsKeys.count >= 0 {
-            checkListTask = parsedOtherSectionCLItemsKeys.sorted()[indexPath.row]
-            taskBoolValue = ((parsedOtherSectionCLItems[checkListTask]))!
-            if parsedOtherSectionCLItems[checkListTask]! == true{
-               // self.numberComplete = 1 + numberComplete
-               // print("this is incromenting \(numberComplete)")
-            }
+                checkListTask = parsedOtherSectionCLItemsKeys.sorted()[indexPath.row]
+                taskBoolValue = ((parsedOtherSectionCLItems[checkListTask]))!
+                if parsedOtherSectionCLItems[checkListTask]! == true{
+                    // self.numberComplete = 1 + numberComplete
+                    // print("this is incromenting \(numberComplete)")
+                }
             }
         }
         
@@ -369,11 +393,11 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
                 print(self?.parsedLocationSectionCLItems)
                 
                 
-        
+                
                 
             } else if taskcell.CheckButtonOutlet.isSelected == true {
                 // print(tableView.indexPath(for: selectedcell)!.section ,tableView.indexPath(for: selectedcell)!.row)
-                    print("the box was checked but now is not ")
+                print("the box was checked but now is not ")
                 
                 // this is what sets the value of the array
                 if tableView.indexPath(for: selectedcell)!.section == 0 {
@@ -499,12 +523,12 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.parsedOtherSectionCLItemsKeys.removeAll()
                 self.parsedOtherSectionCLItemsKeys += stringArray4
                 
-            
+                
                 self.checkListTableView.reloadData()
                 print(self.parsedOtherSectionCLItemsKeys)
                 print(self.parsedOtherSectionCLItems)
             }
-           
+            
         }
         delete.backgroundColor = .red
         
@@ -559,7 +583,30 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
         return
     }
     
-    
+    func fiftyPercentNotification(percentComplete: Int) {
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Congradulations!"
+        
+        content.body = " You have completed half of your check list keep up the good work it will pay off on the shoot day"
+        let request = UNNotificationRequest(identifier: "fiftyPercentNotif", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if error != nil {
+                print(error)
+                
+            }else {
+                print("success")
+                
+            }
+            return
+        }
+        
+        
+        
+    }
     
     // MARK: - Navigation
     
@@ -577,7 +624,7 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
             let LocationInfoView = segue.destination as! LocationInformationViewController
             LocationInfoView.currentLocation = self.CurrentLocation
             LocationInfoView.CurrentLocationID = self.CurrentLocationID
- 
+            
         }else if segue.identifier == "VendorOrderSegue"{
             
             let VendorView = segue.destination as! VendorOrdersViewController
@@ -594,6 +641,6 @@ class CheckListViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         
     }
- 
+    
     
 }

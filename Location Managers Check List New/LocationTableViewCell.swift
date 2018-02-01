@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class LocationTableViewCell: UITableViewCell {
 
     @IBOutlet var PregressBar: UIProgressView!

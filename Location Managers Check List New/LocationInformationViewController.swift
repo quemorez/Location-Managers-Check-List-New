@@ -19,7 +19,7 @@ class LocationInformationViewController: UIViewController {
     var BasecampLocation = PFGeoPoint()
     var CrewParkingLocation = PFGeoPoint()
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-    var ShootDate = ""
+    var ShootDate = "01/01/2018"
     
     
     
@@ -202,13 +202,7 @@ class LocationInformationViewController: UIViewController {
                 self.locationContactNumberTextfield.text = Location["LocationContactNumber"] as? String
                 self.locationContactEmailTextfield.text = Location["LocationContactEmail"] as? String
                 
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "MM/dd/yy"
-                if (Location["ShootDate"] as? String) != nil {
-                let date = dateFormatter.date(from: (Location["ShootDate"] as? String)!)
-                    print(date)
-                   self.ShootDatePicker.date = (date)!
-                }
+
                 
                 
                 self.CateringAddressTextfield.text = Location["CateringAddress"] as? String
@@ -283,7 +277,7 @@ class LocationInformationViewController: UIViewController {
                 Location["LocationContact"] = self.LocationContactTextField.text
                 Location["LocationContactNumber"] = self.locationContactNumberTextfield.text
                 Location["LocationContactEmail"] = self.locationContactEmailTextfield.text
-                Location["ShootDate"] = self.ShootDate
+                //Location["ShootDate"] = self.ShootDate
                 
                 
                 Location["CateringAddress"] = self.CateringAddressTextfield.text
@@ -471,6 +465,9 @@ class LocationInformationViewController: UIViewController {
                         
                     }
                     
+                    // Creates Local notification for shoot day
+                    self.CreateNotifications()
+                    
                 })
             }
             
@@ -480,12 +477,14 @@ class LocationInformationViewController: UIViewController {
     
     
     func CreateNotifications() {
+        //This will set up your shoot day notificcation
         let content = UNMutableNotificationContent()
-        content.title = NSString.localizedUserNotificationString(forKey: "Testing Local Notifications", arguments: nil)
-        content.body = NSString.localizedUserNotificationString(forKey: "We are testing local notifications thais would have something about what your location is shooting", arguments: nil)
+        content.title = NSString.localizedUserNotificationString(forKey: "Shoot Day! for \(currentLocation) Location", arguments: nil)
+        content.body = NSString.localizedUserNotificationString(forKey: "Good Luck today I know all of your hard work will pay off", arguments: nil)
         content.sound = UNNotificationSound.default()
         let comps = Calendar.current.dateComponents(in: .current, from: ShootDatePicker.date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: comps, repeats: false)
+        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: (10), repeats: false)
         let request = UNNotificationRequest(identifier: "Shoot Date Notification", content: content, trigger: trigger)
         let center = UNUserNotificationCenter.current()
         center.add(request) { (error: Error?) in
@@ -493,6 +492,27 @@ class LocationInformationViewController: UIViewController {
                 print(theError.localizedDescription)
             }
         }
+        
+        
+//        // This will set up the week away notification
+//        let content2 = UNMutableNotificationContent()
+//        content2.title = NSString.localizedUserNotificationString(forKey: "You are one week out from filming at the \(currentLocation) Location", arguments: nil)
+//        content2.body = NSString.localizedUserNotificationString(forKey: "Keep CHecking those boxes, it will pay off on shoot day", arguments: nil)
+//        content2.sound = UNNotificationSound.default()
+//        let DaysSubtracted = 7
+//
+//        let oneWeekOut = Calendar.current.d
+//        let comps2 = Calendar.current.dateComponents(in: .current, from: ShootDatePicker.date)
+//        //let trigger = UNCalendarNotificationTrigger(dateMatching: comps, repeats: false)
+//        let trigger2 = UNTimeIntervalNotificationTrigger(timeInterval: (10), repeats: false)
+//        let request2 = UNNotificationRequest(identifier: "One Week OUt Notification", content: content2, trigger: trigger2)
+//        let center2 = UNUserNotificationCenter.current()
+//        center2.add(request2) { (error: Error?) in
+//            if let theError = error {
+//                print(theError.localizedDescription)
+//            }
+//        }
+        
         
     }
     

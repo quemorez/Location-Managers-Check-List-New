@@ -965,9 +965,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="soB-R3-HYS">
                                                         <rect key="frame" x="0.0" y="0.0" width="309" height="40"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" id="1Bx-Qk-xDv"/>
-                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Udv-8b-6l4"/>
-                                                            <constraint firstAttribute="height" constant="40" id="fWB-Fe-tKg"/>
+                                                            <constraint firstAttribute="height" constant="40" id="Q75-Ca-wvW"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="HoltwoodOneSC" family="Holtwood One SC" pointSize="31"/>
                                                         <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1263,7 +1261,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="XKQ-1p-vPM" userLabel="Notes Stack">
-                                                        <rect key="frame" x="0.0" y="1545.5" width="309" height="111"/>
+                                                        <rect key="frame" x="0.0" y="1545.5" width="309" height="111.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBc-Wo-4cd">
                                                                 <rect key="frame" x="0.0" y="0.0" width="309" height="39.5"/>
@@ -1272,7 +1270,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AcZ-bs-bSZ">
-                                                                <rect key="frame" x="0.0" y="39.5" width="309" height="71.5"/>
+                                                                <rect key="frame" x="0.0" y="39.5" width="309" height="72"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="200" id="XCv-7s-IdA"/>
@@ -1284,7 +1282,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="8z5-DR-KfW" userLabel="Opening Notes Stack">
-                                                        <rect key="frame" x="0.0" y="1672.5" width="309" height="758"/>
+                                                        <rect key="frame" x="0.0" y="1673" width="309" height="758"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opening Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unK-Bv-S7X">
                                                                 <rect key="frame" x="0.0" y="0.0" width="309" height="39.5"/>
@@ -1304,16 +1302,16 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="IAU-WX-Xy9" userLabel="Closing Note Stack">
-                                                        <rect key="frame" x="0.0" y="2446.5" width="309" height="233.5"/>
+                                                        <rect key="frame" x="0.0" y="2447" width="309" height="233"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Closing Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkw-XG-JG9">
-                                                                <rect key="frame" x="0.0" y="0.0" width="309" height="40"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="309" height="39.5"/>
                                                                 <fontDescription key="fontDescription" name="HoltwoodOneSC" family="Holtwood One SC" pointSize="24"/>
                                                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LMu-Dc-s1W">
-                                                                <rect key="frame" x="0.0" y="40" width="309" height="193.5"/>
+                                                                <rect key="frame" x="0.0" y="39.5" width="309" height="193.5"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="214" id="2cs-59-rc6"/>
@@ -1410,6 +1408,7 @@
         <image name="UnCheckedBox" width="304" height="222"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="5xV-bb-gA5"/>
         <segue reference="s85-y1-dnP"/>
         <segue reference="Bgo-hN-JWt"/>
         <segue reference="Q7t-YB-Nm6"/>

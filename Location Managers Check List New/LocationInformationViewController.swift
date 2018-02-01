@@ -466,7 +466,7 @@ class LocationInformationViewController: UIViewController {
                     }
                     
                     // Creates Local notification for shoot day
-                    self.CreateNotifications()
+                    //self.CreateNotifications()
                     
                 })
             }

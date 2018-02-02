@@ -959,7 +959,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gsi-5N-3Gb">
                                         <rect key="frame" x="0.0" y="14" width="329" height="2700"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="O3n-Ty-2Xy" userLabel="Overall Stack">
+                                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="O3n-Ty-2Xy" userLabel="Overall Stack">
                                                 <rect key="frame" x="10" y="10" width="309" height="2680"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="soB-R3-HYS">
@@ -1213,17 +1213,17 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="9r1-Um-tNC" userLabel="Holding Stack">
-                                                        <rect key="frame" x="0.0" y="1270" width="309" height="259.5"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="9r1-Um-tNC" userLabel="Holding Stack">
+                                                        <rect key="frame" x="0.0" y="1270" width="309" height="260"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Holding" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9K6-kp-auq">
-                                                                <rect key="frame" x="0.0" y="0.0" width="309" height="39.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="309" height="40"/>
                                                                 <fontDescription key="fontDescription" name="HoltwoodOneSC" family="Holtwood One SC" pointSize="24"/>
                                                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iEF-pj-4z5">
-                                                                <rect key="frame" x="0.0" y="54.5" width="309" height="40"/>
+                                                                <rect key="frame" x="0.0" y="55" width="309" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="6HS-JF-FHr"/>
                                                                 </constraints>
@@ -1232,7 +1232,7 @@
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contact Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="US3-ZQ-2Uo">
-                                                                <rect key="frame" x="0.0" y="109.5" width="309" height="40"/>
+                                                                <rect key="frame" x="0.0" y="110" width="309" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="euX-Ri-6fL"/>
                                                                 </constraints>
@@ -1241,7 +1241,7 @@
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contact Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PYO-Wa-tUS">
-                                                                <rect key="frame" x="0.0" y="164.5" width="309" height="40"/>
+                                                                <rect key="frame" x="0.0" y="165" width="309" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="b00-7s-nWG"/>
                                                                 </constraints>
@@ -1250,7 +1250,7 @@
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contact Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ifZ-OY-5Cf">
-                                                                <rect key="frame" x="0.0" y="219.5" width="309" height="40"/>
+                                                                <rect key="frame" x="0.0" y="220" width="309" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="dEc-Ep-mc5"/>
                                                                 </constraints>
@@ -1260,29 +1260,26 @@
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="XKQ-1p-vPM" userLabel="Notes Stack">
-                                                        <rect key="frame" x="0.0" y="1545.5" width="309" height="111.5"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="XKQ-1p-vPM" userLabel="Notes Stack">
+                                                        <rect key="frame" x="0.0" y="1546" width="309" height="197"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBc-Wo-4cd">
-                                                                <rect key="frame" x="0.0" y="0.0" width="309" height="39.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="309" height="4"/>
                                                                 <fontDescription key="fontDescription" name="HoltwoodOneSC" family="Holtwood One SC" pointSize="24"/>
                                                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AcZ-bs-bSZ">
-                                                                <rect key="frame" x="0.0" y="39.5" width="309" height="72"/>
+                                                                <rect key="frame" x="0.0" y="19" width="309" height="178"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="200" id="XCv-7s-IdA"/>
-                                                                </constraints>
                                                                 <string key="text">Please write your notes here. examples are neighborhood contact lists, if there is any special needs people in the area that need help, exc. In case you get hit by a bus and someone needs to run your location without you.</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                             </textView>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="8z5-DR-KfW" userLabel="Opening Notes Stack">
-                                                        <rect key="frame" x="0.0" y="1673" width="309" height="758"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="8z5-DR-KfW" userLabel="Opening Notes Stack">
+                                                        <rect key="frame" x="0.0" y="1759" width="309" height="327"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opening Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unK-Bv-S7X">
                                                                 <rect key="frame" x="0.0" y="0.0" width="309" height="39.5"/>
@@ -1291,18 +1288,18 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="This is where you write notes for who ever is opening your setor is helping you open your set." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ige-bT-s0U">
-                                                                <rect key="frame" x="0.0" y="39.5" width="309" height="718.5"/>
+                                                                <rect key="frame" x="0.0" y="54.5" width="309" height="272.5"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="214" id="r86-SM-gto"/>
+                                                                    <constraint firstAttribute="height" constant="275" id="DJL-IU-Dx4"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                             </textView>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="IAU-WX-Xy9" userLabel="Closing Note Stack">
-                                                        <rect key="frame" x="0.0" y="2447" width="309" height="233"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="IAU-WX-Xy9" userLabel="Closing Note Stack">
+                                                        <rect key="frame" x="0.0" y="2102" width="309" height="578"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Closing Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkw-XG-JG9">
                                                                 <rect key="frame" x="0.0" y="0.0" width="309" height="39.5"/>
@@ -1311,10 +1308,10 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LMu-Dc-s1W">
-                                                                <rect key="frame" x="0.0" y="39.5" width="309" height="193.5"/>
+                                                                <rect key="frame" x="0.0" y="54.5" width="309" height="523.5"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="214" id="2cs-59-rc6"/>
+                                                                    <constraint firstAttribute="height" constant="523" id="c99-wB-fBp"/>
                                                                 </constraints>
                                                                 <string key="text">This is where you can write notes for the closer. Things like where the condors have to end up at the conclusion of shoting and what generators need to be shut off.</string>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1397,7 +1394,7 @@
                     </barButtonItem>
                 </navigationItem>
             </objects>
-            <point key="canvasLocation" x="4900" y="2229"/>
+            <point key="canvasLocation" x="4900" y="2228.185907046477"/>
         </scene>
     </scenes>
     <resources>
@@ -1408,7 +1405,6 @@
         <image name="UnCheckedBox" width="304" height="222"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5xV-bb-gA5"/>
         <segue reference="s85-y1-dnP"/>
         <segue reference="Bgo-hN-JWt"/>
         <segue reference="Q7t-YB-Nm6"/>

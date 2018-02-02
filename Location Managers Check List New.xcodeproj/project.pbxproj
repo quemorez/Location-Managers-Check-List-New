@@ -34,6 +34,8 @@
 		8CA04B3F2022A8F700B1C12B /* leo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8CA04B3E2022A8F700B1C12B /* leo.gif */; };
 		8CA04B422022B73A00B1C12B /* elfe.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8CA04B402022B73900B1C12B /* elfe.gif */; };
 		8CA04B432022B73A00B1C12B /* joker.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8CA04B412022B73A00B1C12B /* joker.mp4 */; };
+		8CA04B492022C78200B1C12B /* Stickers.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CA04B482022C78200B1C12B /* Stickers.xcassets */; };
+		8CA04B4D2022C78200B1C12B /* Film Industry Stickers.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8CA04B462022C78200B1C12B /* Film Industry Stickers.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8CA95E871F2ECD8E006A2638 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA95E861F2ECD8E006A2638 /* LocationTableViewCell.swift */; };
 		F5684AAF8FB26808C82C216A /* Pods_OneSignalNotificationServiceExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7189EE65999E9A6F052DCE41 /* Pods_OneSignalNotificationServiceExtension.framework */; };
 /* End PBXBuildFile section */
@@ -46,6 +48,13 @@
 			remoteGlobalIDString = 8C7A5424200BC84100F3A1DC;
 			remoteInfo = OneSignalNotificationServiceExtension;
 		};
+		8CA04B4B2022C78200B1C12B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C01083E1F283E5100E3D97F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CA04B452022C78200B1C12B;
+			remoteInfo = "Film Industry Stickers";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,6 +64,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				8CA04B4D2022C78200B1C12B /* Film Industry Stickers.appex in Embed App Extensions */,
 				8C7A542C200BC84100F3A1DC /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -98,6 +108,9 @@
 		8CA04B3E2022A8F700B1C12B /* leo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = leo.gif; sourceTree = "<group>"; };
 		8CA04B402022B73900B1C12B /* elfe.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = elfe.gif; sourceTree = "<group>"; };
 		8CA04B412022B73A00B1C12B /* joker.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = joker.mp4; sourceTree = "<group>"; };
+		8CA04B462022C78200B1C12B /* Film Industry Stickers.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Film Industry Stickers.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CA04B482022C78200B1C12B /* Stickers.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Stickers.xcassets; sourceTree = "<group>"; };
+		8CA04B4A2022C78200B1C12B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CA95E861F2ECD8E006A2638 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		A57A6E1938E6587899EC3DA3 /* Pods_Location_Managers_Check_List_New.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Location_Managers_Check_List_New.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95C91E7D6E8A7F07449304E /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +153,7 @@
 			children = (
 				8C0108481F283E5100E3D97F /* Location Managers Check List New */,
 				8C7A5426200BC84100F3A1DC /* OneSignalNotificationServiceExtension */,
+				8CA04B472022C78200B1C12B /* Film Industry Stickers */,
 				8C0108471F283E5100E3D97F /* Products */,
 				1E097C364206EBB3DE9D4682 /* Pods */,
 				94BCBF60EF972E88FF74E705 /* Frameworks */,
@@ -151,6 +165,7 @@
 			children = (
 				8C0108461F283E5100E3D97F /* Location Managers Check List New.app */,
 				8C7A5425200BC84100F3A1DC /* OneSignalNotificationServiceExtension.appex */,
+				8CA04B462022C78200B1C12B /* Film Industry Stickers.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -198,6 +213,15 @@
 			path = OneSignalNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
+		8CA04B472022C78200B1C12B /* Film Industry Stickers */ = {
+			isa = PBXGroup;
+			children = (
+				8CA04B482022C78200B1C12B /* Stickers.xcassets */,
+				8CA04B4A2022C78200B1C12B /* Info.plist */,
+			);
+			path = "Film Industry Stickers";
+			sourceTree = "<group>";
+		};
 		94BCBF60EF972E88FF74E705 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +251,7 @@
 			);
 			dependencies = (
 				8C7A542B200BC84100F3A1DC /* PBXTargetDependency */,
+				8CA04B4C2022C78200B1C12B /* PBXTargetDependency */,
 			);
 			name = "Location Managers Check List New";
 			productName = "Location Managers Check List New";
@@ -251,6 +276,21 @@
 			productName = OneSignalNotificationServiceExtension;
 			productReference = 8C7A5425200BC84100F3A1DC /* OneSignalNotificationServiceExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
+		};
+		8CA04B452022C78200B1C12B /* Film Industry Stickers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CA04B4E2022C78200B1C12B /* Build configuration list for PBXNativeTarget "Film Industry Stickers" */;
+			buildPhases = (
+				8CA04B442022C78200B1C12B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Film Industry Stickers";
+			productName = "Film Industry Stickers";
+			productReference = 8CA04B462022C78200B1C12B /* Film Industry Stickers.appex */;
+			productType = "com.apple.product-type.app-extension.messages-sticker-pack";
 		};
 /* End PBXNativeTarget section */
 
@@ -285,6 +325,10 @@
 							};
 						};
 					};
+					8CA04B452022C78200B1C12B = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 8C0108411F283E5100E3D97F /* Build configuration list for PBXProject "Location Managers Check List New" */;
@@ -302,6 +346,7 @@
 			targets = (
 				8C0108451F283E5100E3D97F /* Location Managers Check List New */,
 				8C7A5424200BC84100F3A1DC /* OneSignalNotificationServiceExtension */,
+				8CA04B452022C78200B1C12B /* Film Industry Stickers */,
 			);
 		};
 /* End PBXProject section */
@@ -327,6 +372,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CA04B442022C78200B1C12B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CA04B492022C78200B1C12B /* Stickers.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +516,11 @@
 			isa = PBXTargetDependency;
 			target = 8C7A5424200BC84100F3A1DC /* OneSignalNotificationServiceExtension */;
 			targetProxy = 8C7A542A200BC84100F3A1DC /* PBXContainerItemProxy */;
+		};
+		8CA04B4C2022C78200B1C12B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CA04B452022C78200B1C12B /* Film Industry Stickers */;
+			targetProxy = 8CA04B4B2022C78200B1C12B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -665,6 +723,36 @@
 			};
 			name = Release;
 		};
+		8CA04B4F2022C78200B1C12B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V63MCVZ6NB;
+				INFOPLIST_FILE = "Film Industry Stickers/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "ZQ.Location-Managers-Check-List-New.Film-Industry-Stickers";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8CA04B502022C78200B1C12B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V63MCVZ6NB;
+				INFOPLIST_FILE = "Film Industry Stickers/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "ZQ.Location-Managers-Check-List-New.Film-Industry-Stickers";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -691,6 +779,15 @@
 			buildConfigurations = (
 				8C7A542E200BC84100F3A1DC /* Debug */,
 				8C7A542F200BC84100F3A1DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CA04B4E2022C78200B1C12B /* Build configuration list for PBXNativeTarget "Film Industry Stickers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CA04B4F2022C78200B1C12B /* Debug */,
+				8CA04B502022C78200B1C12B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

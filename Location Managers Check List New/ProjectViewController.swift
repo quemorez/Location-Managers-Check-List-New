@@ -65,7 +65,7 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
+        //UIApplication.shared.beginIgnoringInteractionEvents()
         // Mark: -  Query
         let userEmail = PFUser.current()?.email!
         //let predicate = NSPredicate(format: "TeamMembers = \(String(describing: userEmail))")
@@ -87,17 +87,27 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
             }else if let objects = objects {
                 //print(objects)
                 self.Projects.removeAll(keepingCapacity: true)
-                for object in objects {
-                    self.Projects.append(object)
-                    let Title: String = object["Title"] as! String
-                    self.ProjectsTitles.append(Title)
-                    //print(self.ProjectsTitles)
-                    self.projectTableView.reloadData()
-                    
+                if objects.count == 0 {
                     //stops Activity Indicator
                     self.activityIndicator.stopAnimating()
-                    UIApplication.shared.endIgnoringInteractionEvents()
+                    //  UIApplication.shared.endIgnoringInteractionEvents()
+                    self.ProjectsTitles.append("PLEASE ADD PROJECT USING + BUTTON")
+                    self.projectTableView.reloadData()
+                }else {
+                    for object in objects {
+                        self.Projects.append(object)
+                        let Title: String = object["Title"] as! String
+                        self.ProjectsTitles.append(Title)
+                        //print(self.ProjectsTitles)
+                        self.projectTableView.reloadData()
+                        
+                        //stops Activity Indicator
+                        self.activityIndicator.stopAnimating()
+                        //  UIApplication.shared.endIgnoringInteractionEvents()
+                    }
                 }
+                
+               
                 
                 
                 
@@ -105,6 +115,12 @@ class ProjectViewController: UIViewController,UINavigationControllerDelegate,UIT
                 //  print(self.StringDistances)
                 
                 
+            }else if objects?.count == 0 {
+                print("The else if statment is fired")
+                //stops Activity Indicator
+                self.activityIndicator.stopAnimating()
+              //  UIApplication.shared.endIgnoringInteractionEvents()
+                return
             }
         }
         

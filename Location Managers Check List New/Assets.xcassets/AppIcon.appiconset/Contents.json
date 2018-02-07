@@ -107,14 +107,6 @@
       "idiom" : "ios-marketing",
       "filename" : "Icon-512@2x.png",
       "scale" : "1x"
-    },
-    {
-      "filename" : "Icon-20@2x.png",
-      "unassigned" : true
-    },
-    {
-      "filename" : "Icon-20@3x.png",
-      "unassigned" : true
     }
   ],
   "info" : {
